@@ -6,10 +6,10 @@ require 'oshpark/version'
 Gem::Specification.new do |spec|
   spec.name          = "oshpark"
   spec.version       = Oshpark::VERSION
-  spec.authors       = ["James Harton"]
-  spec.email         = ["james@resistor.io"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.authors       = ["James Harton", "Henry Maddocks"]
+  spec.email         = ["james@resistor.io", "henry@resistor.io"]
+  spec.summary       = %q{API and command line client for oshpark.com}
+  spec.description   = %q{API and command line client for PCB fabrication via oshpark.com}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -19,5 +19,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.6"
-  spec.add_development_dependency "rake"
+
+  %w| cucumber rspec-core rspec-mocks guard-rspec guard-cucumber guard-bundler |.each do |gem|
+    spec.add_development_dependency gem
+  end
 end
