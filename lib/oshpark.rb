@@ -1,5 +1,5 @@
 require "oshpark/version"
+require "oshpark/client"
 
 module Oshpark
-  # Your code goes here...
 end
