@@ -2,50 +2,94 @@ require 'json'
 
 module Oshpark
   class Client
-    def initialize endpoint_url
-      self.api_endpoint = endpoint_url
+    Unauthorized = Class.new(RuntimeError)
+    NotFound     = Class.new(RuntimeError)
+    ServerError  = Class.new(RuntimeError)
+
+    attr_accessor :token, :connection
+
+    def initialize connection: Connection.new(endpoint_url = "https://oshpark.com/api/v1")
+      self.connection = connection
+      refresh_token
     end
 
-    def request method, endpoint, params={}
-      method = method[0].upcase + method[1..-1]
-      uri = uri_for endpoint
+    def authenticate username, password
+      refresh_token username: username, password: password
+    end
 
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true if uri.port == 443
-
-      request = Net::HTTP.const_get(method).new(uri.path)
-
-      default_headers.each do |header, value|
-        request[header] = value
+    def projects
+      get_request 'projects' do |json|
+        json['projects'].map do |project_json|
+          Project.from_json project_json, self
+        end
       end
+    end
 
-      response = http.request(request)
-
-      json = JSON.parse(response.body)
-
-      case response.code.to_i
-      when 401
-        raise Unauthorized, json['error']
-      when 404
-        raise NotFound,     json['error']
-      when 500...599
-        raise ServerError,  json['error']
+    def project id
+      get_request "projects/#{id}" do |json|
+        Project.from_json json['project'], self
       end
-
-      yield json
     end
 
-    def uri_for endpoint
-      URI("#{api_endpoint}/endpoint")
+    def orders
+      get_request 'orders' do |json|
+        json['orders'].map do |order_json|
+          Order.from_json order_json, self
+        end
+      end
     end
 
-    def default_headers
-      header = {
-        'Accept'       => 'application/json',
-        # 'Content-Type' => 'application/json'
-      }
-      header['Authorization'] = @token.token if @token
-      header
+    def order id
+      get_request "orders/#{id}" do |json|
+        Order.from_json json, self
+      end
+    end
+
+    def panels
+      get_request "panels" do |json|
+        json['panels'].map do |panel_json|
+          Panel.from_json panel_json, self
+        end
+      end
+    end
+
+    def panel id
+      get_request "panels/#{id}" do |json|
+        Panel.from_json json, self
+      end
+    end
+
+    def has_token?
+      !!@token
+    end
+
+    def authenticated?
+      @token && !!@token.user
+    end
+
+    def time_from json_time
+      Time.parse json_time if json_time
+    end
+
+    private
+
+    def connection
+      @connection
+    end
+
+    def refresh_token params={}
+      post_request 'sessions', params do |json|
+        self.token = Token.from_json json['api_session_token'], self
+      end
+    end
+
+    def post_request endpoint, params={}, &block
+      connection.request :post, endpoint, params, &block
+    end
+
+    def get_request endpoint, params={}, &block
+      connection.request :get, endpoint, params, &block
     end
   end
+
 end

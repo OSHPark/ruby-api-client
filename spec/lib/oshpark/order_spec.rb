@@ -24,7 +24,7 @@ describe Oshpark::Order do
 
   describe '#panel' do
     it 'retrieves a panel' do
-      subject.stub panel_id: :panel_id
+      allow(subject).to receive(:panel_id).and_return(:panel_id)
       expect(subject.client).to receive(:panel).with(:panel_id)
       subject.panel
     end
@@ -32,7 +32,7 @@ describe Oshpark::Order do
 
   describe '#project' do
     it 'retrieves a project' do
-      subject.stub project_id: :project_id
+      allow(subject).to receive(:project_id).and_return(:project_id)
       expect(subject.client).to receive(:project).with(:project_id)
       subject.project
     end
