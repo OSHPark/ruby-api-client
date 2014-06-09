@@ -8,7 +8,7 @@ module Oshpark
 
     attr_accessor :token, :client
 
-    def initialize client: Client.new(endpoint_url = "https://Oshpark.com/api/v1")
+    def initialize client: Client.new(endpoint_url = "https://oshpark.com/api/v1")
       self.client = client
       refresh_token
     end

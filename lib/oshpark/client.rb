@@ -31,6 +31,8 @@ module Oshpark
       when 500...599
         raise ServerError,  json['error']
       end
+
+      yield json
     end
 
     def uri_for endpoint
