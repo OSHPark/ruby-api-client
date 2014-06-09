@@ -1,9 +1,9 @@
-require "Oshpark/version"
-require "Oshpark/Oshpark"
-require "Oshpark/client"
-require "Oshpark/model"
-require "Oshpark/dimensionable"
-require "Oshpark/project"
+require "oshpark/version"
+require "oshpark/oshpark"
+require "oshpark/client"
+require "oshpark/model"
+require "oshpark/dimensionable"
+require "oshpark/project"
 
 module Oshpark
 end
