@@ -2,10 +2,6 @@ require 'json'
 
 module Oshpark
   class Client
-    Unauthorized = Class.new(RuntimeError)
-    NotFound     = Class.new(RuntimeError)
-    ServerError  = Class.new(RuntimeError)
-
     attr_accessor :token, :connection
 
     def initialize connection: Connection.new(endpoint_url = "https://oshpark.com/api/v1")

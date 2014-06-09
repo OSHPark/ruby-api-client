@@ -1,6 +1,12 @@
 require 'json'
+require 'uri'
+require 'net/http'
 
 module Oshpark
+  Unauthorized = Class.new(RuntimeError)
+  NotFound     = Class.new(RuntimeError)
+  ServerError  = Class.new(RuntimeError)
+
   class Connection
     def initialize endpoint_url
       self.api_endpoint = endpoint_url
@@ -33,6 +39,9 @@ module Oshpark
       end
 
       yield json
+
+    rescue JSON::ParserError => e
+      raise ServerError,  "Bad response from server"
     end
 
     private
