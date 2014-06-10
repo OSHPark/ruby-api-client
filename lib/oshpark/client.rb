@@ -9,8 +9,8 @@ module Oshpark
     # @param connection:
     # pass in a subclass of connection which implements the `request` method
     # with whichever HTTP client library you prefer.  Default is Net::HTTP.
-    def initialize connection: Connection.new(endpoint_url = "https://oshpark.com/api/v1")
-      self.connection = connection
+    def initialize url: "https://oshpark.com/api/v1", connection: Connection
+      self.connection = connection.new url
       refresh_token
     end
 
@@ -24,20 +24,14 @@ module Oshpark
 
     # Retrieve a list of projects for the current user.
     def projects
-      get_request 'projects' do |json|
-        json['projects'].map do |project_json|
-          Project.from_json project_json, self
-        end
-      end
+      get_request 'projects'
     end
 
     # Retrieve a particular project from the current user's collection by ID.
     #
     # @param id
     def project id
-      get_request "projects/#{id}" do |json|
-        Project.from_json json['project'], self
-      end
+      get_request "projects/#{id}"
     end
 
     # Approve a particular project from the current user's collection by ID.
@@ -47,9 +41,7 @@ module Oshpark
     #
     # @param id
     def approve_project id
-      get_request "projects/#{id}/approve" do |json|
-        Project.from_json json['project'], self
-      end
+      get_request "projects/#{id}/approve"
     end
 
     # Update a project's data.
@@ -58,9 +50,7 @@ module Oshpark
     # @param attrs
     # A hash of attributes to update.
     def update_project id, attrs
-      put_request "projects/#{id}", project: attrs do |json|
-        Project.from_json json['project']
-      end
+      put_request "projects/#{id}", project: attrs
     end
 
     # Destroy a particular project from the current user's collection by ID.
@@ -96,28 +86,20 @@ module Oshpark
     #
     # @param id
     def cancel_order id
-      delete_request "orders/#{id}" do |json|
-        true
-      end
+      delete_request "orders/#{id}"
     end
 
     # List all currently open and recently closed panels, including some
     # interesting information about them.
     def panels
-      get_request "panels" do |json|
-        json['panels'].map do |panel_json|
-          Panel.from_json panel_json, self
-        end
-      end
+      get_request "panels"
     end
 
     # Retrieve a specific panel by ID.
     #
     # @param id
     def panel id
-      get_request "panels/#{id}" do |json|
-        Panel.from_json json['panel'], self
-      end
+      get_request "panels/#{id}"
     end
 
     # Do we have a currently valid API token?
@@ -144,25 +126,24 @@ module Oshpark
     end
 
     def refresh_token params={}
-      post_request 'sessions', params do |json|
-        self.token = Token.from_json json['api_session_token'], self
-      end
+      json = post_request 'sessions', params
+      self.token = Token.from_json json['api_session_token']
     end
 
-    def post_request endpoint, params={}, &block
-      connection.request :post, endpoint, params, token, &block
+    def post_request endpoint, params={}
+      connection.request :post, endpoint, params, token
     end
 
-    def put_request endpoint, params={}, &block
-      connection.request :put, endpoint, params, token, &block
+    def put_request endpoint, params={}
+      connection.request :put, endpoint, params, token
     end
 
-    def get_request endpoint, params={}, &block
-      connection.request :get, endpoint, params, token, &block
+    def get_request endpoint, params={}
+      connection.request :get, endpoint, params, token
     end
 
-    def delete_request endpoint, params={}, &block
-      connection.request :delete, endpoint, params, token, &block
+    def delete_request endpoint, params={}
+      connection.request :delete, endpoint, params, token
     end
   end
 

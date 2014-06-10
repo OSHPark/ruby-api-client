@@ -33,16 +33,9 @@ module Oshpark
       @height_in_mils || 0
     end
 
-    def reload!
-      client.project id
-    end
-
     def approve!
-      client.approve_project id
-    end
-
-    def destroy!
-      client.destroy_project id
+      json = Oshpark::client.approve_project id
+      reload_with(json)
     end
 
   end

@@ -2,10 +2,7 @@ module Oshpark
   module Model
 
     def initialize json
-      json.each do |key,value|
-        instance_variable_set "@#{key}", value
-      end
-      @dirty_attributes = []
+      reload_with json
     end
 
     def dirty?
@@ -17,34 +14,80 @@ module Oshpark
       @dirty_attributes.map do |attr|
         attrs[attr] = public_send(attr)
       end
-      our_name = self.class.to_s.split('::').last.downcase
-      client.public_send("update_#{our_name}", id, attrs)
+
+      Oshpark::client.public_send("update_#{object_name}", id, attrs)
+    end
+
+    def reload!
+      json = Oshpark::client.public_send(object_name, id)[object_name]
+      reload_with json
+    end
+
+    def destroy!
+      Oshpark::client.public_send("destroy_#{object_name}", id)[object_name]
+      nil
     end
 
     def self.included base
       base.send :extend, ClassMethods
+
       base.instance_eval do
         attr_reader *base.attrs
-        attr_accessor:client
       end
+
       base.write_attrs.each do |attr|
         define_method "#{attr}=" do |new_value|
-          @dirty_attributes << attr
+          @dirty_attributes << attr unless @dirty_attributes.include?(attr)
           instance_variable_set "@#{attr}".to_sym, new_value
         end
       end if base.respond_to? :write_attrs
     end
 
     module ClassMethods
-      def from_json json, client=nil
+      def from_json json
         model = self.new json
-        model.client = client
         model
       end
 
       def attrs
         []
       end
+
+      def all
+        Oshpark::client.public_send(object_names)[object_names].map do |json|
+          self.from_json json
+        end
+      end
+
+      def find id
+        self.from_json(Oshpark::client.public_send(object_name, id)[object_name])
+      end
+
+      def object_name
+        self.name.split('::').last.downcase
+      end
+
+      def object_names
+        "#{object_name}s"
+      end
+
+    end
+
+    private
+
+    def object_name
+      self.class.object_name
+    end
+
+    def object_names
+      self.class.object_names
+    end
+
+    def reload_with json
+      json.each do |key,value|
+        instance_variable_set "@#{key}", value
+      end
+      @dirty_attributes = []
     end
 
   end

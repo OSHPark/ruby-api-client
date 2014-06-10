@@ -20,11 +20,6 @@ module Oshpark
       http.use_ssl = true if uri.port == 443
 
       request = Net::HTTP.const_get(method).new(uri.path)
-
-      # puts params.to_query.inspect
-
-      # request.set_form_data params
-
       request.body = params.to_query
 
       default_headers(token).each do |header, value|
@@ -44,7 +39,7 @@ module Oshpark
         raise ServerError,  json['error']
       end
 
-      yield json
+      json
 
     rescue JSON::ParserError => e
       raise ServerError,  "Bad response from server"

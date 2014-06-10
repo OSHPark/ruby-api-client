@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require 'byebug'
+
+require 'oshpark'
+
+# Oshpark::client
+
+@client = Oshpark::client url: 'http://localhost:3000/api/v1',  connection: Oshpark::Connection
+
+@client.authenticate 'jamesotron', 'frobotz'
+puts "authed!" if @client.authenticated?
+
+projects = Oshpark::Project.all
+
+puts "Retrieved #{projects.size} projects:"
+projects.each do |project|
+  puts "  - #{project.name}"
+end
+
+project = Oshpark::Project.find projects.last.id
+puts "Retrieved single project by id: #{project.name}"
+
+# project.name = "my awesome project"
+# project.save!
+
+orders = Oshpark::Order.all # @client.orders
+
+puts "Retrieved #{orders.size} orders:"
+orders.each do |order|
+  puts "  - #{order.quantity} x #{order.project_name}"
+end
+
+order = Oshpark::Order.find orders.first.id # @client.order orders.first.id
+puts "Retrieved single order by id: #{order.quantity} x #{order.project_name}"
+
+panels = Oshpark::Panel.all
+puts "Retrieved #{panels.size} panels:"
+panels.each do |panel|
+  puts "  - #{panel.scheduled_order_time}"
+end
+
+panel = Oshpark::Panel.find panels.last.id
+puts "Retrieved single panel by id: #{panel.scheduled_order_time}"

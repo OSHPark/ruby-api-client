@@ -9,6 +9,7 @@ require "oshpark/order"
 require "oshpark/panel"
 require "oshpark/image"
 require "oshpark/layer"
+require "oshpark/user"
 require "oshpark/token"
 
 module Oshpark
@@ -16,6 +17,10 @@ module Oshpark
   module_function
 
   def client *args
-    Client.new *args
+    if args.size > 0
+      @client = Client.new *args
+    else
+      @client ||= Client.new
+    end
   end
 end
