@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Oshpark::Order do
-  subject { Oshpark::Order.new.tap { |o| o.client = FakeClient.new } }
+  subject { Oshpark::Order.new({}) }
   it { should be_an Oshpark::Model }
   it { should respond_to :id }
   it { should respond_to :board_cost }
@@ -24,16 +24,16 @@ describe Oshpark::Order do
 
   describe '#panel' do
     it 'retrieves a panel' do
-      allow(subject).to receive(:panel_id).and_return(:panel_id)
-      expect(subject.client).to receive(:panel).with(:panel_id)
+      allow(subject).to receive(:panel_id).and_return('abcd1234')
+      expect(Oshpark::Panel).to receive(:find).with('abcd1234')
       subject.panel
     end
   end
 
   describe '#project' do
     it 'retrieves a project' do
-      allow(subject).to receive(:project_id).and_return(:project_id)
-      expect(subject.client).to receive(:project).with(:project_id)
+      allow(subject).to receive(:project_id).and_return('abcd1234')
+      expect(Oshpark::Project).to receive(:find).with('abcd1234')
       subject.project
     end
   end

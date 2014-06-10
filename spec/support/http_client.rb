@@ -12,13 +12,13 @@ class FakeClient
     'panels/abcd1234'           => { 'panel' => {} },
   }
 
-  def initialize
+  def initialize foo
     self.requests = []
   end
 
-  def request method, endpoint, params={}
+  def request method, endpoint, params={}, token
     requests << [method, endpoint, params]
-    yield FIXTURES[endpoint]
+    FIXTURES[endpoint]
   end
 
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Oshpark::Client do
-  let(:connection) { FakeClient.new }
+  let(:connection) { FakeClient.new "foo"}
   subject          { Oshpark::Client.new connection: connection }
 
   describe '#initialize' do
@@ -20,7 +20,7 @@ describe Oshpark::Client do
 
   describe '#projects' do
     it 'retrieves a list of projects from the API' do
-      expect(subject.projects.first).to be_an(Oshpark::Project)
+      subject.projects
       expect(connection.requests.last).to eq([:get, 'projects', {}])
     end
   end
@@ -28,7 +28,7 @@ describe Oshpark::Client do
   describe '#project' do
     let(:token) { 'abcd1234' }
     it 'retrieves a project from the API' do
-      expect(subject.project(token)).to be_an(Oshpark::Project)
+      subject.project token
       expect(connection.requests.last).to eq([:get, "projects/#{token}", {}])
     end
   end
@@ -36,7 +36,7 @@ describe Oshpark::Client do
   describe '#approve_project' do
     let(:token) { 'abcd1234' }
     it 'approve a project via the API' do
-      expect(subject.approve_project(token)).to be_an(Oshpark::Project)
+      subject.approve_project(token)
       expect(connection.requests.last).to eq([:get, "projects/#{token}/approve", {}])
     end
   end
@@ -51,7 +51,7 @@ describe Oshpark::Client do
 
   describe '#orders' do
     it 'retrieves a list of orders from the API' do
-      expect(subject.orders.first).to be_an(Oshpark::Order)
+      subject.orders
       expect(connection.requests.last).to eq([:get, 'orders', {}])
     end
   end
@@ -59,7 +59,7 @@ describe Oshpark::Client do
   describe '#order' do
     let(:token) { 'abcd1234' }
     it 'retrieves a order from the API' do
-      expect(subject.order(token)).to be_an(Oshpark::Order)
+      subject.order token
       expect(connection.requests.last).to eq([:get, "orders/#{token}", {}])
     end
   end
@@ -74,7 +74,7 @@ describe Oshpark::Client do
 
   describe '#panels' do
     it 'retrieves a list of panels from the API' do
-      expect(subject.panels.first).to be_an(Oshpark::Panel)
+      subject.panels
       expect(connection.requests.last).to eq([:get, 'panels', {}])
     end
   end
@@ -82,7 +82,7 @@ describe Oshpark::Client do
   describe '#panel' do
     let(:token) { 'abcd1234' }
     it 'retrieves a panel from the API' do
-      expect(subject.panel(token)).to be_an(Oshpark::Panel)
+      subject.panel token
       expect(connection.requests.last).to eq([:get, "panels/#{token}", {}])
     end
   end

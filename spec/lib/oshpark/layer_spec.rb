@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Oshpark::Layer do
+  subject { Oshpark::Layer.new({}) }
   it { should be_an Oshpark::Model }
   it { should respond_to :id }
   it { should respond_to :name }

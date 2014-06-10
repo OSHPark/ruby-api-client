@@ -74,6 +74,12 @@ module Oshpark
     end
 
     private
+    # Override hook for converting JSON serialized time strings into Ruby
+    # Time objects.  Only needed if `Time.parse` doesn't work as expected
+    # on your platform (ie RubyMotion).
+    def time_from json_time
+      Time.parse json_time if json_time
+    end
 
     def object_name
       self.class.object_name

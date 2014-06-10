@@ -10,7 +10,11 @@ module Oshpark
     # pass in a subclass of connection which implements the `request` method
     # with whichever HTTP client library you prefer.  Default is Net::HTTP.
     def initialize url: "https://oshpark.com/api/v1", connection: Connection
-      self.connection = connection.new url
+      self.connection = if connection.respond_to? :new
+        connection.new url
+      else
+        connection
+      end
       refresh_token
     end
 
@@ -57,27 +61,20 @@ module Oshpark
     #
     # @param id
     def destroy_project id
-      delete_request "projects/#{id}" do
-        true
-      end
+      delete_request "projects/#{id}"
+      true
     end
 
     # List all the current user's orders, and their status.
     def orders
-      get_request 'orders' do |json|
-        json['orders'].map do |order_json|
-          Order.from_json order_json, self
-        end
-      end
+      get_request 'orders'
     end
 
     # Retrieve a specific order by ID.
     #
     # @param id
     def order id
-      get_request "orders/#{id}" do |json|
-        Order.from_json json['order'], self
-      end
+      get_request "orders/#{id}"
     end
 
     # Cancel a specific order by ID.
@@ -87,6 +84,7 @@ module Oshpark
     # @param id
     def cancel_order id
       delete_request "orders/#{id}"
+      true
     end
 
     # List all currently open and recently closed panels, including some
@@ -110,13 +108,6 @@ module Oshpark
     # Are we successfully authenticated to the API?
     def authenticated?
       @token && !!@token.user
-    end
-
-    # Override hook for converting JSON serialized time strings into Ruby
-    # Time objects.  Only needed if `Time.parse` doesn't work as expected
-    # on your platform (ie RubyMotion).
-    def time_from json_time
-      Time.parse json_time if json_time
     end
 
     private

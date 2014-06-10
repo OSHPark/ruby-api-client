@@ -12,23 +12,23 @@ module Oshpark
     include Model
 
     def panel
-      client.panel panel_id
+      Panel.find panel_id
     end
 
     def project
-      client.project project_id
+      Project.find project_id
     end
 
     def cancelled_at
-      client.time_from @cancelled_at
+      time_from @cancelled_at
     end
 
     def ordered_at
-      client.time_from @ordered_at
+      time_from @ordered_at
     end
 
     def payment_received_at
-      client.time_from @payment_received_at
+      time_from @payment_received_at
     end
   end
 end
