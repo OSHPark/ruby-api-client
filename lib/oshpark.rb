@@ -1,4 +1,5 @@
 require "oshpark/version"
+require "oshpark/ext"
 require "oshpark/client"
 require "oshpark/connection"
 require "oshpark/model"

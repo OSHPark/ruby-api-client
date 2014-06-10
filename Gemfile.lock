@@ -80,6 +80,7 @@ DEPENDENCIES
   guard-cucumber
   guard-rspec
   oshpark!
+  pry
   rspec-core
   rspec-its
   rspec-mocks

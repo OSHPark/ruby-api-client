@@ -3,6 +3,11 @@ module Oshpark
     def self.attrs
       %w| id design_file_url name description top_image bottom_image width_in_mils height_in_mils pcb_layers state layers |
     end
+
+    def self.write_attrs
+      %w| name description |
+    end
+
     include Model
     include Dimensionable
 
@@ -20,20 +25,6 @@ module Oshpark
       end
     end
 
-    def short_description
-      layers = 'two'  if pcb_layers == 2
-      layers = 'four' if pcb_layers == 4
-      "#{size_in_locale} #{layers} layer board"
-    end
-
-    def size_in_locale
-      if metric?
-        "%0.2fx%0.2fmm" % [width_in_mm, height_in_mm]
-      else
-        "%0.2fx%0.2f\"" % [width_in_inches, height_in_inches]
-      end
-    end
-
     def width_in_mils
       @width_in_mils || 0
     end
@@ -42,14 +33,16 @@ module Oshpark
       @height_in_mils || 0
     end
 
-    private
-
-    def metric?
-      NSLocale.currentLocale.objectForKey NSLocaleUsesMetricSystem
+    def reload!
+      client.project id
     end
 
-    def imperial?
-      !metric?
+    def approve!
+      client.approve_project id
+    end
+
+    def destroy!
+      client.destroy_project id
     end
 
   end

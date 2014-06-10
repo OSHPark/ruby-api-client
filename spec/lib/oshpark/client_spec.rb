@@ -33,6 +33,22 @@ describe Oshpark::Client do
     end
   end
 
+  describe '#approve_project' do
+    let(:token) { 'abcd1234' }
+    it 'approve a project via the API' do
+      expect(subject.approve_project(token)).to be_an(Oshpark::Project)
+      expect(connection.requests.last).to eq([:get, "projects/#{token}/approve", {}])
+    end
+  end
+
+  describe '#destroy_project' do
+    let(:token) { 'abcd1234' }
+    it 'destroy a project via the API' do
+      expect(subject.destroy_project(token)).to eq true
+      expect(connection.requests.last).to eq([:delete, "projects/#{token}", {}])
+    end
+  end
+
   describe '#orders' do
     it 'retrieves a list of orders from the API' do
       expect(subject.orders.first).to be_an(Oshpark::Order)
@@ -45,6 +61,14 @@ describe Oshpark::Client do
     it 'retrieves a order from the API' do
       expect(subject.order(token)).to be_an(Oshpark::Order)
       expect(connection.requests.last).to eq([:get, "orders/#{token}", {}])
+    end
+  end
+
+  describe '#cancel_order' do
+    let(:token) { 'abcd1234' }
+    it 'retrieves a order from the API' do
+      expect(subject.cancel_order(token)).to eq true
+      expect(connection.requests.last).to eq([:delete, "orders/#{token}", {}])
     end
   end
 

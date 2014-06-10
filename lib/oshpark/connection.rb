@@ -12,7 +12,7 @@ module Oshpark
       self.api_endpoint = endpoint_url
     end
 
-    def request method, endpoint, params={}
+    def request method, endpoint, params={}, token
       method = method[0].upcase + method[1..-1]
       uri = uri_for endpoint
 
@@ -21,7 +21,13 @@ module Oshpark
 
       request = Net::HTTP.const_get(method).new(uri.path)
 
-      default_headers.each do |header, value|
+      # puts params.to_query.inspect
+
+      # request.set_form_data params
+
+      request.body = params.to_query
+
+      default_headers(token).each do |header, value|
         request[header] = value
       end
 
@@ -49,15 +55,15 @@ module Oshpark
     attr_accessor :api_endpoint
 
     def uri_for endpoint
-      URI("#{api_endpoint}/endpoint")
+      URI("#{api_endpoint}/#{endpoint}")
     end
 
-    def default_headers
+    def default_headers token=nil
       header = {
         'Accept'       => 'application/json',
         # 'Content-Type' => 'application/json'
       }
-      header['Authorization'] = @token.token if @token
+      header['Authorization'] = token.token if token
       header
     end
   end

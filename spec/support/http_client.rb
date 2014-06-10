@@ -2,13 +2,14 @@ class FakeClient
   attr_accessor :requests
 
   FIXTURES = {
-    'sessions'          => { 'api_session_token' => {} },
-    'projects'          => { 'projects' => [{}] },
-    'projects/abcd1234' => { 'project' => {} },
-    'orders'            => { 'orders' => [{}] },
-    'orders/abcd1234' => { 'order' => {} },
-    'panels'            => { 'panels' => [{}] },
-    'panels/abcd1234' => { 'panel' => {} },
+    'sessions'                  => { 'api_session_token' => {} },
+    'projects'                  => { 'projects' => [{}] },
+    'projects/abcd1234'         => { 'project' => {} },
+    'projects/abcd1234/approve' => { 'project' => {} },
+    'orders'                    => { 'orders' => [{}] },
+    'orders/abcd1234'           => { 'order' => {} },
+    'panels'                    => { 'panels' => [{}] },
+    'panels/abcd1234'           => { 'panel' => {} },
   }
 
   def initialize
