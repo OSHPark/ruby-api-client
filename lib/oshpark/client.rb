@@ -100,6 +100,21 @@ module Oshpark
       get_request "panels/#{id}"
     end
 
+    # Retrieve a specific upload by ID
+    #
+    # @param id
+    def upload id
+      get_request "uploads/#{id}"
+    end
+
+    # Create an upload by passing in an IO
+    #
+    # @param io
+    # An IO object.
+    def create_upload io
+      post_request "uploads", {file: io}
+    end
+
     # Do we have a currently valid API token?
     def has_token?
       !!@token
@@ -119,6 +134,7 @@ module Oshpark
     def refresh_token params={}
       json = post_request 'sessions', params
       self.token = Token.from_json json['api_session_token']
+      # Hey @hmaddocks - how are we going to set a timer to make the token refresh?
     end
 
     def post_request endpoint, params={}
