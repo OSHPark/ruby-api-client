@@ -1,5 +1,7 @@
 # Oshpark
 
+[ ![Codeship Status for OSHPark/ruby-api-client](https://codeship.io/projects/a0abc8d0-d247-0131-3eb6-7653b9bc7be9/status?branch=master)](https://codeship.io/projects/23318)
+
 TODO: Write a gem description
 
 ## Installation
