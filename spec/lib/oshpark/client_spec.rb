@@ -12,9 +12,14 @@ describe Oshpark::Client do
   end
 
   describe '#authenticate' do
-    it 'attempts to authenticate an API token' do
-      subject.authenticate 'user', 'pass'
-      expect(connection.requests.last).to eq([:post, 'sessions', {username: 'user', password: 'pass'}])
+    it 'attempts to authenticate an API token with a password' do
+      subject.authenticate 'email', with_password: 'pass'
+      expect(connection.requests.last).to eq([:post, 'sessions', {email: 'email', password: 'pass'}])
+    end
+
+    it 'attempts to authenticate an API token with an API secret' do
+      subject.authenticate 'email', with_api_secret: 'secret'
+      expect(connection.requests.last).to eq([:post, 'sessions', {email: 'email', api_key: 'add39dedbfe932ce383881dac4870bf417ebb79e1ec743e5c1e3bec574a2e821'}])
     end
   end
 

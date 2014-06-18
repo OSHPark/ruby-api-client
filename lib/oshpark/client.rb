@@ -1,3 +1,4 @@
+require 'openssl'
 require 'json'
 
 module Oshpark
@@ -18,12 +19,20 @@ module Oshpark
       refresh_token
     end
 
-    # Authenticate to the API using a username and password.
+    # Authenticate to the API using a email and password.
     #
-    # @param username
-    # @param password
-    def authenticate username, password
-      refresh_token username: username, password: password
+    # @param email
+    # @param credentials
+    #   A hash with either the `with_password` or `with_api_secret` key.
+    def authenticate email, credentials={}
+      if password = credentials[:with_password]
+        refresh_token email: email, password: password
+      elsif secret = credentials[:with_api_secret]
+        api_key = OpenSSL::Digest::SHA256.new("#{email}:#{secret}:#{token.token}").to_s
+        refresh_token email: email, api_key: api_key
+      else
+        raise ArgumentError, "Must provide either `with_password` or `with_api_secret` arguments."
+      end
     end
 
     # Retrieve a list of projects for the current user.
