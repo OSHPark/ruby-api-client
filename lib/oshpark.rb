@@ -10,6 +10,8 @@ require "oshpark/panel"
 require "oshpark/image"
 require "oshpark/layer"
 require "oshpark/user"
+require "oshpark/import"
+require "oshpark/upload"
 require "oshpark/token"
 
 module Oshpark

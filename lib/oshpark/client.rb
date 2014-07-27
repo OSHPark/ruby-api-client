@@ -124,6 +124,21 @@ module Oshpark
       post_request "uploads", {file: io}
     end
 
+    # Retrieve a specific import by ID
+    #
+    # @param id
+    def import id
+      get_request "imports/#{id}"
+    end
+
+    # Create an import by passing in a URL
+    #
+    # @param io
+    # A URL
+    def create_import url
+      post_request "imports", {url: url}
+    end
+
     # Do we have a currently valid API token?
     def has_token?
       !!@token

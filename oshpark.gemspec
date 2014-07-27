@@ -23,4 +23,6 @@ Gem::Specification.new do |spec|
   %w| cucumber rspec-core rspec-mocks rspec-its guard-rspec guard-cucumber guard-bundler pry rake |.each do |gem|
     spec.add_development_dependency gem
   end
+
+  spec.add_dependency 'micro_token'
 end

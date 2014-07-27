@@ -1,3 +1,5 @@
+require 'time'
+
 module Oshpark
   module Model
 

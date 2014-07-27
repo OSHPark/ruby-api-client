@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     oshpark (0.0.1)
+      micro_token
 
 GEM
   remote: https://rubygems.org/
@@ -42,6 +43,7 @@ GEM
       rb-inotify (>= 0.9)
     lumberjack (1.0.6)
     method_source (0.8.2)
+    micro_token (0.0.3)
     multi_json (1.10.1)
     multi_test (0.1.1)
     pry (0.9.12.6)

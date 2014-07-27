@@ -5,4 +5,5 @@ describe Oshpark::Project do
   it { should be_an Oshpark::Model }
   it { should respond_to(:name) }
   it { should respond_to(:name=) }
+
 end

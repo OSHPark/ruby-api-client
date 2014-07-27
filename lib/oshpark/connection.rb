@@ -1,6 +1,7 @@
 require 'json'
 require 'uri'
 require 'net/http'
+require 'micro_token'
 
 module Oshpark
   Unauthorized = Class.new(RuntimeError)
@@ -20,10 +21,20 @@ module Oshpark
       http.use_ssl = true if uri.port == 443
 
       request = Net::HTTP.const_get(method).new(uri.path)
-      request.body = params.to_query
 
       default_headers(token).each do |header, value|
         request[header] = value
+      end
+
+      if params.keys.include? :file
+        boundary = MicroToken.generate 20
+        request.body   = "--#{boundary}\r\n" +
+                         params.to_multipart.join('--' + boundary + "\r\n") +
+                         "--#{boundary}--\r\n"
+        request['Content-Type'] = "multipart/form-data; boundary=#{boundary}"
+
+      else
+        request.body = params.to_query
       end
 
       response = http.request(request)
@@ -60,6 +71,15 @@ module Oshpark
       }
       header['Authorization'] = token.token if token
       header
+    end
+
+
+    def prepare_params params
+      if params.keys.include? :file
+        params.to_multipart
+      else
+        params.to_query
+      end
     end
   end
 end
