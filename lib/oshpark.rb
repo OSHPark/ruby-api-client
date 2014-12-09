@@ -13,6 +13,7 @@ require "oshpark/user"
 require "oshpark/import"
 require "oshpark/upload"
 require "oshpark/token"
+require "oshpark/address"
 
 module Oshpark
 
