@@ -69,6 +69,50 @@ describe Oshpark::Client do
     end
   end
 
+  describe '#create_order' do
+    it "creates an order" do
+      subject.create_order
+      expect(connection.requests.last).to eq([:post, "orders", {}])
+    end
+  end
+
+  describe '#add_order_item' do
+    let(:token)      { 'abcd1234' }
+    let(:project_id) { '1234abcd' }
+    let(:quantity)   { 6 }
+    it "add an order item to an order" do
+      subject.add_order_item token, project_id, quantity
+      expect(connection.requests.last).to eq([:put, "orders/#{token}/add_item", {:project_id=>"1234abcd", :quantity=>6}])
+    end
+  end
+
+  describe '#set_order_address' do
+    let(:token)   { 'abcd1234' }
+    let(:address) { Oshpark::Address.new name: "Bob", address_line_1: "8 Nelson Street" }
+    it "set the delivery address for an order" do
+      subject.set_order_address token, address
+      expect(connection.requests.last).to eq([:put, "orders/#{token}/set_address", {:name=>"Bob", :company_name=>nil, :address_line_1=>"8 Nelson Street", :address_line_2=>nil, :city=>nil, :state=>nil, :zip_or_postal_code=>nil, :country=>nil, :phone_number=>nil, :is_business=>nil}])
+    end
+  end
+
+  describe '#set_order_shipping_rate' do
+    let(:token)            { 'abcd1234' }
+    let(:service_provider) { 'Bobs Mail'}
+    let(:service_name)     { 'Overnight Delivery' }
+    it "sets the shipping rate for an order" do
+      subject.set_order_shipping_rate token, service_provider, service_name
+      expect(connection.requests.last).to eq([:put, "orders/#{token}/set_shipping_rate", {carrier_name: "Bobs Mail", service_name: "Overnight Delivery"}])
+    end
+  end
+
+  describe '#checkout_order' do
+    let(:token) { 'abcd1234' }
+    it "checks out an order" do
+      subject.checkout_order token
+      expect(connection.requests.last).to eq([:put, "orders/#{token}/checkout", {}])
+    end
+  end
+
   describe '#cancel_order' do
     let(:token) { 'abcd1234' }
     it 'retrieves a order from the API' do

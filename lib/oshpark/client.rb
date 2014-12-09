@@ -86,6 +86,44 @@ module Oshpark
       get_request "orders/#{id}"
     end
 
+    # Create a new Order
+    def create_order
+      post_request "orders"
+    end
+
+    # Add a Project to an Order
+    #
+    # @param id
+    # @param project_id
+    # @param quantity
+    def add_order_item id, project_id, quantity
+      put_request "orders/#{id}/add_item", {project_id: project_id, quantity: quantity}
+    end
+
+    # Set the delivery address for an Order
+    #
+    # @param id
+    # @param address
+    def set_order_address id, address
+      put_request "orders/#{id}/set_address", address.to_h
+    end
+
+    # Set the delivery address for an Order
+    #
+    # @param id
+    # @param carrier_name
+    # @param service_name
+    def set_order_shipping_rate id, carrier_name, service_name
+      put_request "orders/#{id}/set_shipping_rate", {carrier_name: carrier_name, service_name: service_name}
+    end
+
+    # Checkout a specific order by ID.
+    #
+    # @param id
+    def checkout_order id
+      put_request "orders/#{id}/checkout"
+    end
+
     # Cancel a specific order by ID.
     # This can only be done when the order is in the 'RECEIVED' and
     # 'AWAITING PANEL' states.
