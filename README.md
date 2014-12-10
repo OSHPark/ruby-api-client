@@ -36,21 +36,21 @@ REST API. These methods return hashes of the API responses.
 
 First create an Oshpark::client object and authenticate;
 
-  client = Oshpark::client
-  client.authenticate 'jane@resistor.io', {with_password: 'secret'}
+    client = Oshpark::client
+    client.authenticate 'jane@resistor.io', {with_password: 'secret'}
 
 Then you can can use this object to interact with Oshpark;
 
-  file = File.open('my_pcb.zip', 'r')
-  upload = client.create_upload file
-  ...
-  my_projects = client.projects
-  ...
-  project = client.project 'id'
-  client.update_project project["id"], {"name" => "my awesome project"}
-  ...
-  new_order = client.create_order
-  ...
+    file = File.open('my_pcb.zip', 'r')
+    upload = client.create_upload file
+    ...
+    my_projects = client.projects
+    ...
+    project = client.project 'id'
+    client.update_project project["id"], {"name" => "my awesome project"}
+    ...
+    new_order = client.create_order
+    ...
 
 All low level methods will call to Oshpark's servers
 Refer to the documentation for more detailed information on each of the available methods.
@@ -63,20 +63,20 @@ the return data in nice Ruby objects.
 
 Again begin by creating an Oshpark::client and authenticating;
 
-  client = Oshpark::client
-  client.authenticate 'jane@resistor.io', {with_password: 'secret'}
+    client = Oshpark::client
+    client.authenticate 'jane@resistor.io', {with_password: 'secret'}
 
-  file = File.open('my_pcb.zip', 'r')
-  upload = Oshpark::Upload.create file
-  ...
-  my_projects = Oshpark::Project.all
-  ...
-  project = Oshpark::Project.find 'id'
-  project.name = "my awesome project"
-  project.save!
-  ...
-  new_order = Oshpark::Order.create
-  ...
+    file = File.open('my_pcb.zip', 'r')
+    upload = Oshpark::Upload.create file
+    ...
+    my_projects = Oshpark::Project.all
+    ...
+    project = Oshpark::Project.find 'id'
+    project.name = "my awesome project"
+    project.save!
+    ...
+    new_order = Oshpark::Order.create
+    ...
 
 Refer to the documentation for more detailed information on each of the available methods.
 
