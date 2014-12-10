@@ -92,11 +92,19 @@ module Oshpark
     end
 
     def reload_with json
+      guard_against_invalid_arguments json.keys
       json.each do |key,value|
         instance_variable_set "@#{key}", value
       end
       @dirty_attributes = []
     end
+
+    def guard_against_invalid_arguments keys
+      if (extra = keys.map(&:to_s) - self.class.attrs) && extra.any?
+        raise ArgumentError, "Unknown attribute: #{extra.join(' ')}"
+      end
+    end
+
 
   end
 end

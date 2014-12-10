@@ -1,14 +1,16 @@
 module Oshpark
   class Address
+    REQUIRED_ARGS = %w|name address_line_1 address_line_2 city country|
     def self.attrs
-      %i| name company_name address_line_1 address_line_2 city state zip_or_postal_code country phone_number is_business |
+      %w| name company_name address_line_1 address_line_2 city state zip_or_postal_code country phone_number is_business |
     end
 
     attrs.each {|a| attr_accessor a }
 
-    def initialize *args
+    def initialize args={}
+      args = check_args args
       Address.attrs.each do |a|
-        v = args.first.fetch(a, nil)
+        v = args.fetch(a, nil)
         public_send :"#{a}=", v
       end
     end
@@ -21,5 +23,22 @@ module Oshpark
       end
     end
 
+    private
+
+    def check_args args
+      unless (args.keys.map(&:to_s) & REQUIRED_ARGS) == REQUIRED_ARGS
+        raise ArgumentError, "Missing required arguments #{(REQUIRED_ARGS - args.keys).join(' ')}"
+      end
+
+      stingify_hash_keys args
+    end
+
+    def stingify_hash_keys hash
+      {}.tap do |h|
+        hash.each do |k, v|
+          h[k.to_s] = v
+        end
+      end
+    end
   end
 end

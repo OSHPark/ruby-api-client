@@ -88,10 +88,10 @@ describe Oshpark::Client do
 
   describe '#set_order_address' do
     let(:token)   { 'abcd1234' }
-    let(:address) { Oshpark::Address.new name: "Bob", address_line_1: "8 Nelson Street" }
+    let(:address) { Oshpark::Address.new name: "Bob", address_line_1: "8 Nelson Street", address_line_2: "Petone",  city: "Lower Hutt", country: "New Zealand" }
     it "set the delivery address for an order" do
       subject.set_order_address token, address
-      expect(connection.requests.last).to eq([:put, "orders/#{token}/set_address", {:name=>"Bob", :company_name=>nil, :address_line_1=>"8 Nelson Street", :address_line_2=>nil, :city=>nil, :state=>nil, :zip_or_postal_code=>nil, :country=>nil, :phone_number=>nil, :is_business=>nil}])
+      expect(connection.requests.last).to eq([:put, "orders/#{token}/set_address", {"name" => "Bob", "company_name" => nil, "address_line_1" => "8 Nelson Street", "address_line_2" => "Petone", "city" => "Lower Hutt", "state" => nil, "zip_or_postal_code" => nil, "country" => "New Zealand", "phone_number" => nil, "is_business" => nil}])
     end
   end
 
