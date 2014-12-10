@@ -3,7 +3,7 @@
 
 [ ![Codeship Status for OSHPark/ruby-api-client](https://codeship.io/projects/a0abc8d0-d247-0131-3eb6-7653b9bc7be9/status?branch=master)](https://codeship.io/projects/23318)
 
-OSH Park[https://oshpark.com] is a community printed circuit board (PCB) order.
+[OSH Park](https://oshpark.com) is a community printed circuit board (PCB) order.
 The Oshpark gem allows developers to easily access the Oshpark API. Developer resources can be found at [https://oshpark.com/developer](https://oshpark.com/developer)
 
 ## Installation
@@ -30,7 +30,7 @@ This gem provides two interfaces to the OShpark API.
 
 For use when you have an ORM, framework or pre-exsiting classes that you want to load the Oshpark data into.
 
-The API consists of a number of methods that map to the methods exposed by the Oshpark REST API. These methods take Ruby hashes representing the request data and return hashes of the API responses. Refer to [https://oshpark.com/developer/resources](https://oshpark.com/developer/)resources for details.
+The API consists of a number of methods that map to the methods exposed by the Oshpark REST API. These methods take Ruby hashes representing the request data and return hashes of the API responses. Refer to [https://oshpark.com/developer/resources](https://oshpark.com/developer/resources) for details.
 
 First create an Oshpark::client object and authenticate;
 
