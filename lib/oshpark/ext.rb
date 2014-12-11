@@ -1,3 +1,4 @@
+#:nodoc: all
 module OshparkArrayExtensions
   def to_multipart key
     prefix = "#{key}[]"

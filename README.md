@@ -50,7 +50,7 @@ Then you can can use this object to interact with Oshpark;
     new_order = client.create_order
     ...
 
-All low level methods will call to Oshpark's servers. Refer to the documentation for more detailed information on each of the available methods.
+All low level methods will call to Oshpark's servers. Refer to the [source documentation](http://www.rubydoc.info/github/OSHPark/ruby-api-client/master) for more detailed information on each of the available methods.
 
 ### High Level API
 
