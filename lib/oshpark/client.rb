@@ -10,7 +10,10 @@ module Oshpark
     # @param connection:
     # pass in a subclass of connection which implements the `request` method
     # with whichever HTTP client library you prefer.  Default is Net::HTTP.
-    def initialize url: "https://oshpark.com/api/v1", connection: Connection
+    def initialize args = {}
+      url = args.fetch(:url, "https://oshpark.com/api/v1")
+      connection = args.fetch(:connection, Connection)
+
       self.connection = if connection.respond_to? :new
         connection.new url
       else
