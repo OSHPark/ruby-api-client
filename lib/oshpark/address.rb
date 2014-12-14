@@ -5,6 +5,8 @@ module Oshpark
       %w| name company_name address_line_1 address_line_2 city state zip_or_postal_code country phone_number is_business |
     end
 
+    include Model
+
     attrs.each {|a| attr_accessor a }
 
     def initialize args={}
