@@ -1,7 +1,7 @@
 module Oshpark
   class Project
     def self.attrs
-      %w| id design_file_url name description top_image bottom_image width_in_mils height_in_mils pcb_layers state layers |
+      %w| id design_file_url name description top_image bottom_image width_in_mils height_in_mils pcb_layers state layers order_options is_shared |
     end
 
     def self.write_attrs
@@ -10,6 +10,8 @@ module Oshpark
 
     include Model
     include Dimensionable
+
+    alias shared? is_shared
 
     def top_image
       Image.from_json @top_image
@@ -22,6 +24,12 @@ module Oshpark
     def layers
       @layers.map do |json|
         Layer.from_json json
+      end
+    end
+
+    def order_options
+      @order_options.map do |json|
+        OrderOption.from_json json
       end
     end
 
