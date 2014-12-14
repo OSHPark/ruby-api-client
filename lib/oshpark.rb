@@ -16,6 +16,7 @@ require "oshpark/upload"
 require "oshpark/token"
 require "oshpark/address"
 require "oshpark/shipping_rate"
+require "oshpark/order_item"
 
 module Oshpark
 
