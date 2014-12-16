@@ -7,7 +7,7 @@ module Oshpark
     include Model
 
     def self.create url
-      self.from_json(Oshpark::client.create_import(url))
+      self.from_json(Oshpark::client.create_import(url)['import'])
     end
 
     def project
