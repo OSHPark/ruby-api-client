@@ -14,6 +14,20 @@ module Oshpark
       Project.find project_id
     end
 
+    def processing?
+      %w| WAITING RUNNING |.member? state
+    end
+
+    def finished?
+      %w| SUCCESS ERROR FAILED |.member? state
+    end
+
+    %w| WAITING RUNNING SUCCESS ERROR FAILED |.each do |_state|
+      define_method "#{_state.downcase}?" do
+        state == _state
+      end
+    end
+
     def queued_at
       time_from @queued_at
     end
