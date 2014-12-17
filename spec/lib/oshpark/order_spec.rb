@@ -66,7 +66,7 @@ describe Oshpark::Order do
 
   describe '#set_shipping_rate' do
     let(:carrier_name) { 'Bobs Mail'}
-    let(:service_name)     { 'Overnight Delivery' }
+    let(:service_name) { 'Overnight Delivery' }
     it 'sets the shipping rate for an Order' do
       allow(subject).to receive(:id).and_return('abcd1234')
 

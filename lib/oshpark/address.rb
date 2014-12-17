@@ -10,11 +10,7 @@ module Oshpark
     attrs.each {|a| attr_accessor a }
 
     def initialize args={}
-      args = check_args args
-      Address.attrs.each do |a|
-        v = args.fetch(a, nil)
-        public_send :"#{a}=", v
-      end
+      super check_args args
     end
 
     def to_h
@@ -31,16 +27,8 @@ module Oshpark
       unless (args.keys.map(&:to_s) & REQUIRED_ARGS) == REQUIRED_ARGS
         raise ArgumentError, "Missing required arguments #{(REQUIRED_ARGS - args.keys).join(' ')}"
       end
-
-      stingify_hash_keys args
+      args
     end
 
-    def stingify_hash_keys hash
-      {}.tap do |h|
-        hash.each do |k, v|
-          h[k.to_s] = v
-        end
-      end
-    end
   end
 end

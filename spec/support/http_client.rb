@@ -8,6 +8,7 @@ class FakeClient
     'projects/abcd1234/approve' => { 'project' => {} },
     'orders'                    => { 'orders' => [{}] },
     'orders/abcd1234'           => { 'order' => {} },
+    'shipping_rates'            => { 'shipping_rates' => [{}] },
     'panels'                    => { 'panels' => [{}] },
     'panels/abcd1234'           => { 'panel' => {} },
   }

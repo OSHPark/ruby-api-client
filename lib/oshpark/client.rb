@@ -108,7 +108,11 @@ module Oshpark
     # @param id
     # @param address
     def set_order_address id, address
-      put_request "orders/#{id}/set_address", address.to_h
+      put_request "orders/#{id}/set_address", address
+    end
+
+    def shipping_rates address_params
+      post_request "shipping_rates", {address: address_params}
     end
 
     # Set the delivery address for an Order
