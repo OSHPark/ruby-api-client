@@ -82,7 +82,7 @@ describe Oshpark::Client do
     let(:quantity)   { 6 }
     it "add an order item to an order" do
       subject.add_order_item token, project_id, quantity
-      expect(connection.requests.last).to eq([:put, "orders/#{token}/add_item", {:project_id=>"1234abcd", :quantity=>6}])
+      expect(connection.requests.last).to eq([:post, "orders/#{token}/add_item", {order: {:project_id=>"1234abcd", :quantity=>6}}])
     end
   end
 
@@ -91,7 +91,7 @@ describe Oshpark::Client do
     let(:address) { {"name" => "Bob", "company_name" => nil, "address_line_1" => "8 Nelson Street", "address_line_2" => "Petone", "city" => "Lower Hutt", "state" => nil, "zip_or_postal_code" => nil, "country" => "New Zealand", "phone_number" => nil, "is_business" => nil} }
     it "set the delivery address for an order" do
       subject.set_order_address token, address
-      expect(connection.requests.last).to eq([:put, "orders/#{token}/set_address", {"name" => "Bob", "company_name" => nil, "address_line_1" => "8 Nelson Street", "address_line_2" => "Petone", "city" => "Lower Hutt", "state" => nil, "zip_or_postal_code" => nil, "country" => "New Zealand", "phone_number" => nil, "is_business" => nil}])
+      expect(connection.requests.last).to eq([:post, "orders/#{token}/set_address", {order: {address: {"name" => "Bob", "company_name" => nil, "address_line_1" => "8 Nelson Street", "address_line_2" => "Petone", "city" => "Lower Hutt", "state" => nil, "zip_or_postal_code" => nil, "country" => "New Zealand", "phone_number" => nil, "is_business" => nil}}}])
     end
   end
 
@@ -110,7 +110,7 @@ describe Oshpark::Client do
     let(:service_name)     { 'Overnight Delivery' }
     it "sets the shipping rate for an order" do
       subject.set_order_shipping_rate token, service_provider, service_name
-      expect(connection.requests.last).to eq([:put, "orders/#{token}/set_shipping_rate", {carrier_name: "Bobs Mail", service_name: "Overnight Delivery"}])
+      expect(connection.requests.last).to eq([:post, "orders/#{token}/set_shipping_rate", {order: {shipping_rate: {carrier_name: "Bobs Mail", service_name: "Overnight Delivery"}}}])
     end
   end
 
@@ -118,7 +118,7 @@ describe Oshpark::Client do
     let(:token) { 'abcd1234' }
     it "checks out an order" do
       subject.checkout_order token
-      expect(connection.requests.last).to eq([:put, "orders/#{token}/checkout", {}])
+      expect(connection.requests.last).to eq([:post, "orders/#{token}/checkout", {}])
     end
   end
 
