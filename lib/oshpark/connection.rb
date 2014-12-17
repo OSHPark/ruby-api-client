@@ -73,7 +73,6 @@ module Oshpark
       header
     end
 
-
     def prepare_params params
       if params.keys.include? :file
         params.to_multipart

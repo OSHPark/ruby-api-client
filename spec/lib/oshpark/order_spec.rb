@@ -29,7 +29,7 @@ describe Oshpark::Order do
   end
 
   describe '.create' do
-    before { expect(Oshpark::client).to receive(:create_order).and_return({id: "abcd1234", state: 'New'}) }
+    before { expect(Oshpark::client).to receive(:create_order).and_return({'order' => {id: "abcd1234", state: 'New'}}) }
     subject { Oshpark::Order.create }
 
     it 'creates a new Order' do
@@ -49,7 +49,7 @@ describe Oshpark::Order do
       allow(subject).to receive(:id).and_return('abcd1234')
 
       expect(item).to receive(:id).and_return('1234abcd')
-      expect(Oshpark::client).to receive(:add_order_item).with("abcd1234", "1234abcd", 6).and_return({id: "abcd1234"})
+      expect(Oshpark::client).to receive(:add_order_item).with("abcd1234", "1234abcd", 6).and_return({'order' => {id: "abcd1234"}})
       subject.add_item item, quantity
     end
   end
@@ -59,7 +59,7 @@ describe Oshpark::Order do
     it 'sets the delivery Address for an Order' do
       allow(subject).to receive(:id).and_return('abcd1234')
 
-      expect(Oshpark::client).to receive(:set_order_address).with("abcd1234", address).and_return({id: "abcd1234"})
+      expect(Oshpark::client).to receive(:set_order_address).with("abcd1234", address).and_return({'order' => {id: "abcd1234"}})
       subject.set_address address
     end
   end
@@ -70,7 +70,7 @@ describe Oshpark::Order do
     it 'sets the shipping rate for an Order' do
       allow(subject).to receive(:id).and_return('abcd1234')
 
-      expect(Oshpark::client).to receive(:set_order_shipping_rate).with("abcd1234", "Bobs Mail", "Overnight Delivery").and_return({id: "abcd1234"})
+      expect(Oshpark::client).to receive(:set_order_shipping_rate).with("abcd1234", "Bobs Mail", "Overnight Delivery").and_return({'order' => {id: "abcd1234"}})
       subject.set_shipping_rate carrier_name, service_name
     end
   end
@@ -79,7 +79,7 @@ describe Oshpark::Order do
     it 'checks out the order' do
       allow(subject).to receive(:id).and_return('abcd1234')
 
-      expect(Oshpark::client).to receive(:checkout_order).and_return({id: "abcd1234"})
+      expect(Oshpark::client).to receive(:checkout_order).and_return({'order' => {id: "abcd1234"}})
       subject.checkout
     end
   end

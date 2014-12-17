@@ -10,7 +10,7 @@ module Oshpark
     include Stateful
 
     def self.create file
-      self.from_json(Oshpark::client.create_upload(file))
+      self.from_json(Oshpark::client.create_upload(file)['upload'])
     end
 
     def project
