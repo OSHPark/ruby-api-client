@@ -4,7 +4,10 @@ module Oshpark
       %w| id state original_url original_filename error_message queued_at started_at completed_at errored_at failed_at project_id |
     end
 
+    STATES = %w| WAITING RUNNING SUCCESS ERROR FAILED |
+
     include Model
+    include Stateful
 
     def self.create url
       self.from_json(Oshpark::client.create_import(url)['import'])
