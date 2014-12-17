@@ -1,11 +1,15 @@
 module Oshpark
   class OrderItem
+
+    STATES = %w| NEW AWAITING_PANEL PANELIZED ORDERED FABBED SHIPPED CANCELLED |
+
     def self.attrs
       %w| name batches batch_cost sub_total price quantity state confirmed_at panelized_at
           ordered_at fabbed_at shipped_at project_id panel_id order_item_option_selections |
     end
 
     include Model
+    include Stateful
 
     def project
       Oshpark::Project.find @project_id if @project_id

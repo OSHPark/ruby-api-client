@@ -1,5 +1,7 @@
 module Oshpark
   class Panel
+    STATES = %w| OPEN ORDERED RECEIVED |
+
     def self.attrs
       %w| pcb_layers scheduled_order_time expected_receive_time
           id ordered_at received_at state service total_orders
@@ -7,6 +9,7 @@ module Oshpark
     end
 
     include Model
+    include Stateful
 
     def scheduled_order_time
       time_from @scheduled_order_time if @scheduled_order_time

@@ -1,5 +1,7 @@
 module Oshpark
   class Project
+    STATES = %w| NEW APPROVED AWAITING_REMOVAL |
+
     def self.attrs
       %w| id design_file_url name description top_image bottom_image width_in_mils height_in_mils pcb_layers state layers order_options is_shared |
     end
@@ -9,6 +11,7 @@ module Oshpark
     end
 
     include Model
+    include Stateful
     include Dimensionable
 
     alias shared? is_shared

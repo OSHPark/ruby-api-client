@@ -1,6 +1,8 @@
 module Oshpark
   class Order
 
+    STATES = %w| EMPTY NEW RECEIVED PROCESSING SHIPPED CANCELLED |
+
     def self.attrs
       %w| id board_cost cancellation_reason cancelled_at ordered_at
           payment_provider payment_received_at project_name quantity
@@ -10,6 +12,7 @@ module Oshpark
     end
 
     include Model
+    include Stateful
 
     def self.create
       self.from_json(Oshpark::client.create_order)

@@ -4,7 +4,10 @@ module Oshpark
       %w| id state original_filename error_message queued_at started_at completed_at errored_at failed_at project_id |
     end
 
+    STATES = %w| WAITING RUNNING SUCCESS ERROR FAILED |
+
     include Model
+    include Stateful
 
     def self.create file
       self.from_json(Oshpark::client.create_upload(file))
@@ -15,17 +18,11 @@ module Oshpark
     end
 
     def processing?
-      %w| WAITING RUNNING |.member? state
+      waiting? || running?
     end
 
     def finished?
-      %w| SUCCESS ERROR FAILED |.member? state
-    end
-
-    %w| WAITING RUNNING SUCCESS ERROR FAILED |.each do |_state|
-      define_method "#{_state.downcase}?" do
-        state == _state
-      end
+      success? || error? || failed?
     end
 
     def queued_at
