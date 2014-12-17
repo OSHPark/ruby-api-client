@@ -21,6 +21,10 @@ module Oshpark
       end
     end
 
+    def available_shipping_rates
+      ShippingRates.rates_for_address self
+    end
+
     private
 
     def check_args args
