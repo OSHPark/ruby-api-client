@@ -82,8 +82,9 @@ module Oshpark
     # @param width
     # @param height
     # @param layers
-    def pricing width, height, layers
-      post_request "pricing", {width: width, height: height, layers: layers}
+    # @param quantity Optional Defaults to the minimum quantity
+    def pricing width, height, layers, quantity = nil
+      post_request "pricing", {width: width, height: height, layers: layers, quantity: quantity}
     end
 
     # List all the current user's orders, and their status.

@@ -16,7 +16,7 @@ describe Oshpark::Price do
 
     before do
       expect(Oshpark::client).to receive(:pricing).
-        with(1000, 1000, 2).
+        with(1000, 1000, 2, nil).
         and_return({'pricing' => {batch_cost: "5.00", subtotal: "10.00"}})
     end
 

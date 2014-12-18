@@ -7,8 +7,8 @@ module Oshpark
 
     include Model
 
-    def self.price_for width, height, layers
-      json = Oshpark::client.pricing width, height, layers
+    def self.price_for width, height, layers, quantity = nil
+      json = Oshpark::client.pricing width, height, layers, quantity
       from_json json['pricing']
     end
   end

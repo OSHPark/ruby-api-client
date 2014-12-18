@@ -61,7 +61,7 @@ describe Oshpark::Client do
 
     it "return pricing information" do
       subject.pricing width, height, layers
-      expect(connection.requests.last).to eq([:post, "pricing", {width: 1000, height: 1000, layers: 2}])
+      expect(connection.requests.last).to eq([:post, "pricing", {width: 1000, height: 1000, layers: 2, quantity: nil}])
     end
   end
 
