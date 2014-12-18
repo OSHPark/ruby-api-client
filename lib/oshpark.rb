@@ -17,6 +17,7 @@ require "oshpark/upload"
 require "oshpark/token"
 require "oshpark/address"
 require "oshpark/shipping_rate"
+require "oshpark/price"
 require "oshpark/order_item"
 require "oshpark/order_item_option_selection"
 

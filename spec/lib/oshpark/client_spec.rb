@@ -54,6 +54,17 @@ describe Oshpark::Client do
     end
   end
 
+  describe "#pricing" do
+    let(:width)  { 1000 }
+    let(:height) { 1000 }
+    let(:layers) { 2 }
+
+    it "return pricing information" do
+      subject.pricing width, height, layers
+      expect(connection.requests.last).to eq([:post, "pricing", {width: 1000, height: 1000, layers: 2}])
+    end
+  end
+
   describe '#orders' do
     it 'retrieves a list of orders from the API' do
       subject.orders

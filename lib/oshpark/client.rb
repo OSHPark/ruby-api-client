@@ -77,6 +77,15 @@ module Oshpark
       true
     end
 
+    # Request a price estimate
+    #
+    # @param width
+    # @param height
+    # @param layers
+    def pricing width, height, layers
+      post_request "pricing", {width: width, height: height, layers: layers}
+    end
+
     # List all the current user's orders, and their status.
     def orders
       get_request 'orders'
