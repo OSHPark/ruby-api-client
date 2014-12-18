@@ -79,12 +79,12 @@ module Oshpark
 
     # Request a price estimate
     #
-    # @param width
-    # @param height
+    # @param width  In thousands of an Inch
+    # @param height In thousands of an Inch
     # @param layers
     # @param quantity Optional Defaults to the minimum quantity
-    def pricing width, height, layers, quantity = nil
-      post_request "pricing", {width: width, height: height, layers: layers, quantity: quantity}
+    def pricing width, height, pcb_layers, quantity = nil
+      post_request "pricing", {width_in_mils: width, height_in_mils: height, pcb_layers: pcb_layers, quantity: quantity}
     end
 
     # List all the current user's orders, and their status.
