@@ -46,7 +46,7 @@ module Oshpark
 
     def approve!
       json = Oshpark::client.approve_project id
-      reload_with(json['project'])
+      reload_with json
     end
 
   end

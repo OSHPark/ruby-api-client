@@ -10,7 +10,10 @@ module Oshpark
     attrs.each {|a| attr_accessor a }
 
     def initialize args={}
-      super check_args args
+      clean_json args do |json|
+        check_args json
+        reload_with json
+      end
     end
 
     def to_h

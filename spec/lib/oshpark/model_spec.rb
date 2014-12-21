@@ -9,6 +9,9 @@ describe Oshpark::Model do
       def self.write_attrs
         [ 'bob' ]
       end
+      def self.name
+        "Klass"
+      end
 
     end
   end

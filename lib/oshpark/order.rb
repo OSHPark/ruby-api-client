@@ -20,22 +20,22 @@ module Oshpark
 
     def add_item order_item, quantity
       json = Oshpark::client.add_order_item id, order_item.id, quantity
-      reload_with json['order']
+      reload_with json
     end
 
     def set_address address
       json = Oshpark::client.set_order_address id, address
-      reload_with json['order']
+      reload_with json
     end
 
     def set_shipping_rate carrier_name, service_name
       json = Oshpark::client.set_order_shipping_rate id, carrier_name, service_name
-      reload_with json['order']
+      reload_with json
     end
 
     def checkout
       json = Oshpark::client.checkout_order id
-      reload_with json['order']
+      reload_with json
     end
 
     def panel

@@ -21,12 +21,12 @@ module Oshpark
     end
 
     def reload!
-      json = Oshpark::client.public_send(object_name, id)[object_name]
+      json = Oshpark::client.public_send(object_name, id)
       reload_with json
     end
 
     def destroy!
-      Oshpark::client.public_send("destroy_#{object_name}", id)[object_name]
+      Oshpark::client.public_send("destroy_#{object_name}", id)
       nil
     end
 
@@ -72,7 +72,6 @@ module Oshpark
       def object_names
         "#{object_name}s"
       end
-
     end
 
     private
@@ -91,12 +90,22 @@ module Oshpark
       self.class.object_names
     end
 
+    def clean_json json
+      json = json[object_name] if json.has_key? object_name
+
+      yield json if block_given?
+      json
+    end
+
     def reload_with json
-      guard_against_invalid_arguments json.keys
-      json.each do |key,value|
-        instance_variable_set "@#{key}", value
+      clean_json(json) do |json|
+        guard_against_invalid_arguments json.keys
+
+        json.each do |key,value|
+          instance_variable_set "@#{key}", value
+        end
+        @dirty_attributes = []
       end
-      @dirty_attributes = []
     end
 
     def guard_against_invalid_arguments keys
@@ -104,7 +113,6 @@ module Oshpark
         raise ArgumentError, "Unknown attribute: #{extra.join(' ')}"
       end
     end
-
 
   end
 end
