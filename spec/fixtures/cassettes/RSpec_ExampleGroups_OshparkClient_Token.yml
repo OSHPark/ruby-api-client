@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oshpark.com/api/v1/sessions
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Mon, 22 Dec 2014 21:50:33 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Location:
+      - "/api/v1/sessions.%23%3CApiSessionToken:0x007f0ceec52e00%3E"
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - '"0629106be173807308fcebcd02c5d898"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJWVkOWZhOWJjNDBiZGQ2MTI2NzAzMmVmY2Q5YTNhY2FhBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Nlc3Npb25zBjsAVA%3D%3D--87c94ec31d69af6007f320a343423283597c3496;
+        path=/; secure; HttpOnly
+      X-Request-Id:
+      - 777614b9-2846-4710-9810-6e6713873d9f
+      X-Runtime:
+      - '0.025416'
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"api_session_token":{"token":"GbbiFWSd2eaDnPHgddMBG2pXSzeCXS6kgMjCM2nKJ7sCuIhYF5pUTkosk54kT0LQXm5UQCtT0waxkV6PByZ9Qk6pMlAg3UnGQR2Amj4SpWC2keSV490A0zARnCS5sInD","ttl":1199,"user_id":null}}'
+    http_version: 
+  recorded_at: Mon, 22 Dec 2014 21:50:34 GMT
+recorded_with: VCR 2.9.3

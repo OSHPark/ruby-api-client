@@ -5,7 +5,7 @@ module Oshpark
 
     def initialize json={}
       super
-      @expires_at = Time.now + @ttl
+      @expires_at = Time.now + (@ttl || 0)
     end
 
     def self.attrs

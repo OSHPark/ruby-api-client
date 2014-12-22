@@ -20,7 +20,8 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.6"
 
-  %w| rspec-core rspec-mocks rspec-its guard-rspec guard-bundler pry rake byebug vcr webmock |.each do |gem|
+  %w| rspec-core rspec-mocks rspec-its guard-rspec guard-bundler pry rake
+      byebug vcr webmock dotenv |.each do |gem|
     spec.add_development_dependency gem
   end
 

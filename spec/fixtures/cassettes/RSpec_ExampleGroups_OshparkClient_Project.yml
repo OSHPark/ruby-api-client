@@ -1,0 +1,184 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oshpark.com/api/v1/sessions
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Mon, 22 Dec 2014 21:50:50 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Location:
+      - "/api/v1/sessions.%23%3CApiSessionToken:0x007f0cce599228%3E"
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - '"6c9815aeaabfbe86dd3dc7ca3c00df9e"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTRjOWQ4NDQ4ZGJmNDEzMmUxNzRmMjhkYWYzZjM0NjkxBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Nlc3Npb25zBjsAVA%3D%3D--4a2072ff0a8c5e407d6ca9e67ba747adf6f159e1;
+        path=/; secure; HttpOnly
+      X-Request-Id:
+      - e0f20e36-9455-4e61-9940-40328d6353db
+      X-Runtime:
+      - '0.024569'
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"api_session_token":{"token":"etTuIN3cQeXpwJFaSb4nabmfKl5dZDxHexY1gebGnKChkU4v0nvOByihXXJQbqxW8pV5w3JVhK0FAFr8iCa7J1UAioCplAaKtjc3c3uFzT0lGe3AfVsdBStd8R3rQXrF","ttl":1199,"user_id":null}}'
+    http_version: 
+  recorded_at: Mon, 22 Dec 2014 21:50:50 GMT
+- request:
+    method: post
+    uri: https://oshpark.com/api/v1/sessions
+    body:
+      encoding: US-ASCII
+      string: email=<USERNAME>&password=<PASSWORD>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Authorization:
+      - etTuIN3cQeXpwJFaSb4nabmfKl5dZDxHexY1gebGnKChkU4v0nvOByihXXJQbqxW8pV5w3JVhK0FAFr8iCa7J1UAioCplAaKtjc3c3uFzT0lGe3AfVsdBStd8R3rQXrF
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Mon, 22 Dec 2014 21:50:51 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Location:
+      - "/api/v1/sessions.%23%3CApiSessionToken:0x007f0cf479fab0%3E"
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - '"53fdda726395dd8c75f140abad5b6ba3"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJWYyZTE1MmEwOWVhZTBhYWJiN2IxNzYxYThmMTAxMzNkBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Nlc3Npb25zBjsAVA%3D%3D--6dc46a47303f001889efbf0cb8de30d081078efc;
+        path=/; secure; HttpOnly
+      X-Request-Id:
+      - f85890c6-6a75-4fa1-ba8c-8f510c39bee9
+      X-Runtime:
+      - '0.133628'
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"api_session_token":{"token":"etTuIN3cQeXpwJFaSb4nabmfKl5dZDxHexY1gebGnKChkU4v0nvOByihXXJQbqxW8pV5w3JVhK0FAFr8iCa7J1UAioCplAaKtjc3c3uFzT0lGe3AfVsdBStd8R3rQXrF","ttl":1199,"user_id":"54988b9a31666200265c0100"}}'
+    http_version: 
+  recorded_at: Mon, 22 Dec 2014 21:50:52 GMT
+- request:
+    method: get
+    uri: https://oshpark.com/api/v1/projects/<PROJECT>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Authorization:
+      - etTuIN3cQeXpwJFaSb4nabmfKl5dZDxHexY1gebGnKChkU4v0nvOByihXXJQbqxW8pV5w3JVhK0FAFr8iCa7J1UAioCplAaKtjc3c3uFzT0lGe3AfVsdBStd8R3rQXrF
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Mon, 22 Dec 2014 21:50:52 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - '"217b6f95e6d9d10587aebcd9627498a4"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJWM4ODQ0ZmJlMDUwMTM1ZmM5ZDAyOGI0MWY5ZTJlNzQzBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIh4vYXBpL3YxL3Byb2plY3RzL2Q5U05yNkZMBjsAVA%3D%3D--08e85f0f387ffdcc909a4972531fc36d661bdaee;
+        path=/; secure; HttpOnly
+      X-Request-Id:
+      - 2efb4c5b-8b34-46e8-af51-f23291944c50
+      X-Runtime:
+      - '0.041488'
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"project":{"id":"<PROJECT>","design_file_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/project/design/<PROJECT>/design.brd","name":"2
+        Layer","description":null,"top_image":{"thumb_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/project/top_image/<PROJECT>/thumb_i.png","large_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/project/top_image/<PROJECT>/large_i.png","original_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/project/top_image/<PROJECT>/i.png"},"bottom_image":{"thumb_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/project/bottom_image/<PROJECT>/thumb_i.png","large_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/project/bottom_image/<PROJECT>/large_i.png","original_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/project/bottom_image/<PROJECT>/i.png"},"width_in_mils":3937,"height_in_mils":3150,"pcb_layers":2,"state":"APPROVED","is_shared":false,"layers":[{"id":"Z3z5OIWR","name":"Bottom
+        Solder Mask","gerber_file_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/gerber/Z3z5OIWR/bottom%20solder%20mask.ger","image":{"thumb_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/Z3z5OIWR/thumb_i.png","large_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/Z3z5OIWR/large_i.png","original_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/Z3z5OIWR/i.png"},"imported_from":"2-Layer.brd","width_in_mils":null,"height_in_mils":null},{"id":"AqI0Wjhz","name":"Top
+        Layer","gerber_file_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/gerber/AqI0Wjhz/top%20layer.ger","image":{"thumb_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/AqI0Wjhz/thumb_i.png","large_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/AqI0Wjhz/large_i.png","original_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/AqI0Wjhz/i.png"},"imported_from":"2-Layer.brd","width_in_mils":null,"height_in_mils":null},{"id":"2zLUrmIO","name":"Top
+        Solder Mask","gerber_file_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/gerber/2zLUrmIO/top%20solder%20mask.ger","image":{"thumb_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/2zLUrmIO/thumb_i.png","large_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/2zLUrmIO/large_i.png","original_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/2zLUrmIO/i.png"},"imported_from":"2-Layer.brd","width_in_mils":null,"height_in_mils":null},{"id":"me4JHbJd","name":"Bottom
+        Layer","gerber_file_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/gerber/me4JHbJd/bottom%20layer.ger","image":{"thumb_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/me4JHbJd/thumb_i.png","large_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/me4JHbJd/large_i.png","original_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/me4JHbJd/i.png"},"imported_from":"2-Layer.brd","width_in_mils":null,"height_in_mils":null},{"id":"6xclZ2Xs","name":"Drills","gerber_file_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/gerber/6xclZ2Xs/drills.ger","image":{"thumb_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/6xclZ2Xs/thumb_i.png","large_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/6xclZ2Xs/large_i.png","original_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/6xclZ2Xs/i.png"},"imported_from":"2-Layer.brd","width_in_mils":null,"height_in_mils":null},{"id":"iGVEvfnU","name":"Top
+        Silk Screen","gerber_file_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/gerber/iGVEvfnU/top%20silk%20screen.ger","image":{"thumb_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/iGVEvfnU/thumb_i.png","large_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/iGVEvfnU/large_i.png","original_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/iGVEvfnU/i.png"},"imported_from":"2-Layer.brd","width_in_mils":null,"height_in_mils":null},{"id":"8DDREoDw","name":"Board
+        Outline","gerber_file_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/gerber/8DDREoDw/board%20outline.ger","image":{"thumb_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/8DDREoDw/thumb_i.png","large_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/8DDREoDw/large_i.png","original_url":"https://644db4de3505c40a0444-327723bce298e3ff5813fb42baeefbaa.ssl.cf1.rackcdn.com/uploads/layer/image/8DDREoDw/i.png"},"imported_from":"2-Layer.brd","width_in_mils":3937,"height_in_mils":3150}],"order_options":[{"id":"super-swift-service","name":"Super
+        Swift Service","description":"If you select this option, we''ll ship your
+        order in under 5 business days.  For example: An order placed Monday will
+        ship no later than the following Monday, barring holidays.  ** December 24th
+        and 25th are holidays **","price":"89.0"}]}}'
+    http_version: 
+  recorded_at: Mon, 22 Dec 2014 21:50:53 GMT
+recorded_with: VCR 2.9.3
