@@ -3,6 +3,17 @@ module Oshpark
 
     attr_accessor :expires_at
 
+    def initialize json={}
+      super
+      @expires_at = Time.now + @ttl
+    end
+
+    def self.attrs
+      %w| token ttl user_id |
+    end
+
+    include Model
+
     def ttl
       expires_at - Time.now
     end
@@ -11,14 +22,9 @@ module Oshpark
       User.from_json 'id' => user_id
     end
 
-    def ttl= i
-      sel.expires_at = Time.now + i
+    def valid?
+      ttl > 0
     end
 
-    def self.attrs
-      %w| token ttl user_id |
-    end
-
-    include Model
   end
 end
