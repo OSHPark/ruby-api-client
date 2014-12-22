@@ -78,6 +78,7 @@ GEM
     slop (3.5.0)
     thor (0.19.1)
     timers (1.1.0)
+    vcr (2.9.3)
 
 PLATFORMS
   ruby
@@ -95,3 +96,4 @@ DEPENDENCIES
   rspec-core
   rspec-its
   rspec-mocks
+  vcr
