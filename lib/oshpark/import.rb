@@ -7,6 +7,7 @@ module Oshpark
     STATES = %w| WAITING RUNNING SUCCESS ERROR FAILED |
 
     include Model
+    include RemoteModel
     include Stateful
 
     def self.create url

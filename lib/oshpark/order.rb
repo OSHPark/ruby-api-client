@@ -12,6 +12,7 @@ module Oshpark
     end
 
     include Model
+    include RemoteModel
     include Stateful
 
     def self.create

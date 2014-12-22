@@ -11,25 +11,6 @@ module Oshpark
       @dirty_attributes.size > 0
     end
 
-    def save!
-      attrs = {}
-      @dirty_attributes.map do |attr|
-        attrs[attr] = public_send(attr)
-      end
-
-      Oshpark::client.public_send("update_#{object_name}", id, attrs)
-    end
-
-    def reload!
-      json = Oshpark::client.public_send(object_name, id)
-      reload_with json
-    end
-
-    def destroy!
-      Oshpark::client.public_send("destroy_#{object_name}", id)
-      nil
-    end
-
     def self.included base
       base.send :extend, ClassMethods
 
@@ -53,16 +34,6 @@ module Oshpark
 
       def attrs
         []
-      end
-
-      def all
-        Oshpark::client.public_send(object_names)[object_names].map do |json|
-          self.from_json json
-        end
-      end
-
-      def find id
-        self.from_json(Oshpark::client.public_send(object_name, id)[object_name])
       end
 
       def object_name

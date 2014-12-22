@@ -9,6 +9,7 @@ module Oshpark
     end
 
     include Model
+    include RemoteModel
     include Stateful
 
     def scheduled_order_time

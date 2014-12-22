@@ -11,6 +11,7 @@ module Oshpark
     end
 
     include Model
+    include RemoteModel
     include Stateful
     include Dimensionable
 
