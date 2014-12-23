@@ -29,7 +29,13 @@ module Oshpark
       reload_with json
     end
 
-    def set_shipping_rate carrier_name, service_name
+    def set_shipping_rate *args
+      carrier_name, service_name = if Oshpark::ShippingRate === args.first
+                                     rate = args.first
+                                     [rate.carrier_name, rate.service_name]
+                                   else
+                                     args
+                                   end
       json = Oshpark::client.set_order_shipping_rate id, carrier_name, service_name
       reload_with json
     end

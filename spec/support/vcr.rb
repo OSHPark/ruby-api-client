@@ -7,15 +7,14 @@ VCR.configure do |config|
   config.cassette_library_dir = File.expand_path('../../fixtures/cassettes/', __FILE__)
   config.hook_into :webmock
 
-  config.filter_sensitive_data('<USERNAME>') { ENV['USERNAME'] }
-  config.filter_sensitive_data('<PASSWORD>') { ENV['PASSWORD'] }
-  config.filter_sensitive_data('<PROJECT>')  { ENV['PROJECT']}
+  config.filter_sensitive_data('USERNAME') { ENV['USERNAME'] }
+  config.filter_sensitive_data('PASSWORD') { ENV['PASSWORD'] }
 end
 
 module SwitchCassette
   def self.extended base
     base.around(:each) do |example|
-      opts = {}
+      opts = { preserve_exact_body_bytes: true }
       opts[:record] = if ENV['CI']
                         :all
                       else

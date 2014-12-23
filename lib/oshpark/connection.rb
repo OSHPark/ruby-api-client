@@ -39,7 +39,11 @@ module Oshpark
 
       response = http.request(request)
 
-      json = JSON.parse(response.body)
+      json = if response.body.size >= 2
+               JSON.parse(response.body)
+             else
+               {}
+             end
 
       case response.code.to_i
       when 401
@@ -53,7 +57,7 @@ module Oshpark
       json
 
     rescue JSON::ParserError => e
-      raise ServerError,  "Bad response from server"
+      raise ServerError,  "Bad response from server: #{e.message}"
     end
 
     private

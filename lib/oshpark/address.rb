@@ -25,7 +25,7 @@ module Oshpark
     end
 
     def available_shipping_rates
-      ShippingRates.rates_for_address self
+      ShippingRate.rates_for_address self
     end
 
     private

@@ -38,6 +38,12 @@ module Oshpark
       end
     end
 
+    # Abandon a previous authentication.
+    def abandon
+      self.token = nil
+      refresh_token
+    end
+
     # Retrieve a list of projects for the current user.
     def projects
       get_request 'projects'
