@@ -26,5 +26,9 @@ module Oshpark
       ttl > 0
     end
 
+    def authentic?
+      valid? && !!user_id
+    end
+
   end
 end
