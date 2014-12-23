@@ -1,11 +1,5 @@
 require 'spec_helper'
 
-def authenticated_client
-  Oshpark::Client.new.tap do |client|
-    client.authenticate ENV['USERNAME'], with_password: ENV['PASSWORD']
-  end
-end
-
 describe Oshpark::Client do
   extend SwitchCassette
 
@@ -54,22 +48,4 @@ describe Oshpark::Client do
       end
     end
   end
-
-  describe '#projects' do
-    subject { authenticated_client.projects }
-
-    it { should have_key 'projects' }
-    its(['projects']) { should_not be_empty }
-  end
-
-  describe '#project' do
-    subject { authenticated_client.project ENV['PROJECT'] }
-
-    it { should have_key 'project' }
-    its(['project']) { should have_key 'id' }
-    it 'has the correct ID' do
-      expect(subject['project']['id']).to eq ENV['PROJECT']
-    end
-  end
-
 end
