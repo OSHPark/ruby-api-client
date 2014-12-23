@@ -3,6 +3,10 @@ require 'time'
 module Oshpark
   module RemoteModel
 
+    def self.included base
+      base.extend ClassMethods
+    end
+
     def save!
       attrs = {}
       @dirty_attributes.map do |attr|
