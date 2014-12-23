@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Mon, 22 Dec 2014 21:50:43 GMT
+      - Tue, 23 Dec 2014 03:19:44 GMT
       Connection:
       - keep-alive
       Strict-Transport-Security:
@@ -33,29 +33,29 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Location:
-      - "/api/v1/sessions.%23%3CApiSessionToken:0x007f0cccb21e90%3E"
+      - "/api/v1/sessions.%23%3CApiSessionToken:0x007fad299b2200%3E"
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - '"4ac12679c115e78af1fafea8462e791a"'
+      - '"f7b6d204353991aed1c3badf3d602d2f"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
-      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTYwZTQ5YWY1NGVjMjFlNmQyOGNjYTA3ZDFjNmI0NzcxBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Nlc3Npb25zBjsAVA%3D%3D--ab1550754922b1f3a05066bda231739b139bf107;
+      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTcwNWNmYjAyM2RkMTg4MGQyYTdmNzhmZDU1NjYzNzNjBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Nlc3Npb25zBjsAVA%3D%3D--7b20b8e9adfda90f8941ac9bb0502f743b0effbf;
         path=/; secure; HttpOnly
       X-Request-Id:
-      - 8e8036e4-601a-4aef-8b02-d1b651a4dbe0
+      - 58e7160f-114c-4aef-8284-7ebed2074838
       X-Runtime:
-      - '0.018181'
+      - '0.010680'
       Transfer-Encoding:
       - chunked
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"api_session_token":{"token":"LP71dS2nhegHzL6pk7oowp84Rv2xsihYf3Bn5YptMDZ2qWSl9WnSXxuHZSd5vcByuLO7RUWFux5TOrmSVY3ABFUeC7qY6Psf3MvR6CoQSpD1Gtvt6dADWl8Gg2Hfg2n3","ttl":1199,"user_id":null}}'
+      string: '{"api_session_token":{"token":"2YMqXUwjZDk03LYipvmNe7VFfsVYZ5TQgxbUgeuiCgTeqaxpq6nGzfcdZ55IzMrZVdpfNWgx2yW2WQu9rd2ZEwMlsCaexg5kUTu9DIj4ta1Nqzyl8tA7GPASNGQnHrjR","ttl":1199,"user_id":null}}'
     http_version: 
-  recorded_at: Mon, 22 Dec 2014 21:50:44 GMT
+  recorded_at: Tue, 23 Dec 2014 03:19:45 GMT
 - request:
     method: post
     uri: https://oshpark.com/api/v1/sessions
@@ -70,7 +70,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Authorization:
-      - LP71dS2nhegHzL6pk7oowp84Rv2xsihYf3Bn5YptMDZ2qWSl9WnSXxuHZSd5vcByuLO7RUWFux5TOrmSVY3ABFUeC7qY6Psf3MvR6CoQSpD1Gtvt6dADWl8Gg2Hfg2n3
+      - 2YMqXUwjZDk03LYipvmNe7VFfsVYZ5TQgxbUgeuiCgTeqaxpq6nGzfcdZ55IzMrZVdpfNWgx2yW2WQu9rd2ZEwMlsCaexg5kUTu9DIj4ta1Nqzyl8tA7GPASNGQnHrjR
   response:
     status:
       code: 201
@@ -79,7 +79,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Mon, 22 Dec 2014 21:50:44 GMT
+      - Tue, 23 Dec 2014 03:19:45 GMT
       Connection:
       - keep-alive
       Strict-Transport-Security:
@@ -91,29 +91,29 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Location:
-      - "/api/v1/sessions.%23%3CApiSessionToken:0x007f0cec774228%3E"
+      - "/api/v1/sessions.%23%3CApiSessionToken:0x007fad3f990018%3E"
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - '"00888d58b26ed9ecbabc5aa27b803ee6"'
+      - '"3a04945e2c6c773eed8dce07e0c68dce"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
-      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTMyOGZjYjk3YzA2MTNiNjAzNmM4MzRmZTA4YWI2MzUzBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Nlc3Npb25zBjsAVA%3D%3D--21a8e4baf04dd0f5d0d704e700db640772c40168;
+      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJWRhYTlmYTkyZDAxMTNhMTAxOTFmN2E3YzRhMDVkZjk0BjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Nlc3Npb25zBjsAVA%3D%3D--9fb3ea3c5bfe0297a3d265be75d4d4916f038ef0;
         path=/; secure; HttpOnly
       X-Request-Id:
-      - 8c50941e-5e29-4813-bb8e-dd55673b451f
+      - fa739b12-46ff-4929-904d-16d077c66af3
       X-Runtime:
-      - '0.132806'
+      - '0.135045'
       Transfer-Encoding:
       - chunked
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"api_session_token":{"token":"LP71dS2nhegHzL6pk7oowp84Rv2xsihYf3Bn5YptMDZ2qWSl9WnSXxuHZSd5vcByuLO7RUWFux5TOrmSVY3ABFUeC7qY6Psf3MvR6CoQSpD1Gtvt6dADWl8Gg2Hfg2n3","ttl":1199,"user_id":"54988b9a31666200265c0100"}}'
+      string: '{"api_session_token":{"token":"2YMqXUwjZDk03LYipvmNe7VFfsVYZ5TQgxbUgeuiCgTeqaxpq6nGzfcdZ55IzMrZVdpfNWgx2yW2WQu9rd2ZEwMlsCaexg5kUTu9DIj4ta1Nqzyl8tA7GPASNGQnHrjR","ttl":1199,"user_id":"54988b9a31666200265c0100"}}'
     http_version: 
-  recorded_at: Mon, 22 Dec 2014 21:50:45 GMT
+  recorded_at: Tue, 23 Dec 2014 03:19:46 GMT
 - request:
     method: get
     uri: https://oshpark.com/api/v1/projects
@@ -128,7 +128,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Authorization:
-      - LP71dS2nhegHzL6pk7oowp84Rv2xsihYf3Bn5YptMDZ2qWSl9WnSXxuHZSd5vcByuLO7RUWFux5TOrmSVY3ABFUeC7qY6Psf3MvR6CoQSpD1Gtvt6dADWl8Gg2Hfg2n3
+      - 2YMqXUwjZDk03LYipvmNe7VFfsVYZ5TQgxbUgeuiCgTeqaxpq6nGzfcdZ55IzMrZVdpfNWgx2yW2WQu9rd2ZEwMlsCaexg5kUTu9DIj4ta1Nqzyl8tA7GPASNGQnHrjR
   response:
     status:
       code: 200
@@ -137,7 +137,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Mon, 22 Dec 2014 21:50:46 GMT
+      - Tue, 23 Dec 2014 03:19:46 GMT
       Connection:
       - keep-alive
       Strict-Transport-Security:
@@ -155,12 +155,12 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
-      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTQyYmM0YzliMmFhNzFhMTIyMjUwYjJkYzVmYzg2YTIyBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Byb2plY3RzBjsAVA%3D%3D--ef7880b0b1f90d18be788886e66de3fb0635fb20;
+      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTcyMGU5MGE3YmJmYTc4OWUxZWU5NmYwMjE3YWUwZDgxBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Byb2plY3RzBjsAVA%3D%3D--700dae2079e7349e98b770334d899fe02fcdfad0;
         path=/; secure; HttpOnly
       X-Request-Id:
-      - 1f26c410-908c-45e3-bad3-902785da1e5b
+      - 26d08214-34ce-4b23-a3b3-a5458f48bf3d
       X-Runtime:
-      - '0.052012'
+      - '0.054119'
       Transfer-Encoding:
       - chunked
       Via:
@@ -180,5 +180,5 @@ http_interactions:
         ship no later than the following Monday, barring holidays.  ** December 24th
         and 25th are holidays **","price":"89.0"}]}]}'
     http_version: 
-  recorded_at: Mon, 22 Dec 2014 21:50:46 GMT
+  recorded_at: Tue, 23 Dec 2014 03:19:47 GMT
 recorded_with: VCR 2.9.3
