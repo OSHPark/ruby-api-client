@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Mon, 22 Dec 2014 21:50:33 GMT
+      - Tue, 23 Dec 2014 03:19:30 GMT
       Connection:
       - keep-alive
       Strict-Transport-Security:
@@ -33,27 +33,27 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Location:
-      - "/api/v1/sessions.%23%3CApiSessionToken:0x007f0ceec52e00%3E"
+      - "/api/v1/sessions.%23%3CApiSessionToken:0x007fad40d8c008%3E"
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - '"0629106be173807308fcebcd02c5d898"'
+      - '"bdb5e26449873fe7019f57901e65ea9e"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
-      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJWVkOWZhOWJjNDBiZGQ2MTI2NzAzMmVmY2Q5YTNhY2FhBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Nlc3Npb25zBjsAVA%3D%3D--87c94ec31d69af6007f320a343423283597c3496;
+      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTM1MWYwMzI5NzE2YjM4MjNmMTgzYzkxYjI5MjVmMWRjBjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Nlc3Npb25zBjsAVA%3D%3D--ef860be17e4c5dcc06d08ff5ebcb5f3ab131a56b;
         path=/; secure; HttpOnly
       X-Request-Id:
-      - 777614b9-2846-4710-9810-6e6713873d9f
+      - ff59d78d-e4d8-40d9-aa43-fe1fc2869e60
       X-Runtime:
-      - '0.025416'
+      - '0.059256'
       Transfer-Encoding:
       - chunked
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"api_session_token":{"token":"GbbiFWSd2eaDnPHgddMBG2pXSzeCXS6kgMjCM2nKJ7sCuIhYF5pUTkosk54kT0LQXm5UQCtT0waxkV6PByZ9Qk6pMlAg3UnGQR2Amj4SpWC2keSV490A0zARnCS5sInD","ttl":1199,"user_id":null}}'
+      string: '{"api_session_token":{"token":"cVOvlTyPAPoc36jx55G61sCaF7sytUhiDnhS3oLplLv55bJpEY2YM4iE8VDCxVfzi69Tzxmki1MdmBxPMNTUWewYDwadaq2mb1k7kYtVqU7W7oMxkADDod7zt1s5B6qb","ttl":1199,"user_id":null}}'
     http_version: 
-  recorded_at: Mon, 22 Dec 2014 21:50:34 GMT
+  recorded_at: Tue, 23 Dec 2014 03:19:31 GMT
 recorded_with: VCR 2.9.3

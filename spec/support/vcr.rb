@@ -15,7 +15,13 @@ end
 module SwitchCassette
   def self.extended base
     base.around(:each) do |example|
-      VCR.use_cassette example.example_group.name.strip, &example
+      opts = {}
+      opts[:record] = if ENV['CI']
+                        :all
+                      else
+                        :none
+                      end
+      VCR.use_cassette example.example_group.name.strip, opts, &example
     end
   end
 end
