@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    oshpark (0.0.9)
+    oshpark (0.0.10)
       micro_token
       thor
 
