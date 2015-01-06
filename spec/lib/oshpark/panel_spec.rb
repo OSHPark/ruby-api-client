@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Oshpark::Panel do
   subject { Oshpark::Panel.new({}) }
   it { should be_an Oshpark::Model }
+  it { should be_an Oshpark::RemoteModel }
   it { should respond_to :pcb_layers }
   it { should respond_to :scheduled_order_time }
   it { should respond_to :expected_receive_time }

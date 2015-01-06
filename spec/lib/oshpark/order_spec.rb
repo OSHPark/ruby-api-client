@@ -7,6 +7,7 @@ describe Oshpark::Order do
 
   subject { Oshpark::Order.new({}) }
   it { should be_an Oshpark::Model }
+  it { should be_an Oshpark::RemoteModel }
 
   %w| id board_cost cancellation_reason cancelled_at ordered_at payment_provider payment_received_at project_name quantity shipping_address shipping_cost shipping_country shipping_method shipping_name state total_cost project_id panel_id |.each do |attr|
     it { should respond_to attr }
