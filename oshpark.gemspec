@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["james@resistor.io", "henry@resistor.io"]
   spec.summary       = %q{API and command line client for oshpark.com}
   spec.description   = %q{API and command line client for PCB fabrication via oshpark.com}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/oshpark/ruby-api-client"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
