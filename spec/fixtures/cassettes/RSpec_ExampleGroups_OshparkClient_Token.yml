@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oshpark.com/api/v1/sessions
+    body:
+      encoding: US-ASCII
+      base64_string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Tue, 06 Jan 2015 03:31:10 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Location:
+      - "/api/v1/sessions.%23%3CApiSessionToken:0x007fa0880ff2f0%3E"
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - '"1ae6478c1175923e962f9ab6d570b899"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _Playground_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTM5MTZhN2M5ODU5N2I5ZjYwYjlmZThiYjQ1ZWNjMDg0BjsAVEkiEXByZXZpb3VzX3VybAY7AEZJIhUvYXBpL3YxL3Nlc3Npb25zBjsAVA%3D%3D--1e995382af741eec96efa2dbd73eaa3eeab8c9d4;
+        path=/; secure; HttpOnly
+      X-Request-Id:
+      - 123249c8-29ff-4b91-9615-926cb0204e21
+      X-Runtime:
+      - '0.026389'
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      base64_string: |
+        eyJhcGlfc2Vzc2lvbl90b2tlbiI6eyJ0b2tlbiI6Ilh4Q3JMQkU5M0kzVXVB
+        WWxqYTRScUVZcjVhTW9EWWRqNVJqUzRPdDNnSElzU3hsRFBoeWszWDhVVjBi
+        RTRTTnBpT0t5enhoTVJ4N21aT1BCNDRjM0RuMTNwVm5LMGY1azNKWTNFRm03
+        UUUwSlRjbTBERGQxM1ByYXJEUGV3bU9wIiwidHRsIjoxMTk5LCJ1c2VyX2lk
+        IjpudWxsfX0=
+    http_version: 
+  recorded_at: Tue, 06 Jan 2015 03:31:10 GMT
+recorded_with: VCR 2.9.3

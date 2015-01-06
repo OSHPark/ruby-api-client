@@ -62,7 +62,7 @@ module Oshpark
     end
 
     def clean_json json
-      json = json[object_name] if json.has_key? object_name
+      json = json[object_name] if json.has_key?(object_name) && (Hash === json[object_name])
 
       yield json if block_given?
       json
