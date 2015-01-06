@@ -1,105 +1,231 @@
-# Oshpark
+# OSH Park
 ##An electric ecosystem
 
 [ ![Codeship Status for OSHPark/ruby-api-client](https://codeship.io/projects/a0abc8d0-d247-0131-3eb6-7653b9bc7be9/status?branch=master)](https://codeship.io/projects/23318)
 
 [OSH Park](https://oshpark.com) is a community printed circuit board (PCB) order.
-The Oshpark gem allows developers to easily access the Oshpark API. Developer resources can be found at [https://oshpark.com/developer](https://oshpark.com/developer)
+The OSH Park gem allows developers to easily access the OSH Park API. Developer resources can be found at [https://oshpark.com/developer](https://oshpark.com/developer)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'oshpark'
+```ruby
+gem 'oshpark'
+```
 
 And then execute:
 
-    $ bundle
+```sh
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install oshpark
+```sh
+$ gem install oshpark
+```
 
 ## Usage
 
-Before you begin you need to have an [Oshpark account](http://oshpark.com/users/sign_up) and then request access to the Oshpark API. Do this by contacting [Oshpark support](mailto:support@oshpark.com)
+Before you begin you need to have an [OSH Park account](http://oshpark.com/users/sign_up) and then request access to the OSH Park API. Do this by contacting [OSH Park support](mailto:support@oshpark.com)
 
-This gem provides two interfaces to the OShpark API.
+This gem provides two interfaces to the OSH Park API.
 
 ### Low level API
 
-For use when you have an ORM, framework or pre-exsiting classes that you want to load the Oshpark data into.
+For use when you have an ORM, framework or pre-exsiting classes that you want to load the OSH Park data into.
 
-The API consists of a number of methods that map to the methods exposed by the Oshpark REST API. These methods take Ruby hashes representing the request data and return hashes of the API responses. Refer to [https://oshpark.com/developer/resources](https://oshpark.com/developer/resources) for details.
+The API consists of a number of methods that map to the methods exposed by the OSH Park REST API. These methods take Ruby hashes representing the request data and return hashes of the API responses. Refer to [https://oshpark.com/developer/resources](https://oshpark.com/developer/resources) for details.
 
-First create an Oshpark::client object and authenticate;
+First create an `Oshpark::client` object and authenticate;
 
-    client = Oshpark::client
-    client.authenticate 'jane@resistor.io', {with_password: 'secret'}
+```ruby
+client = Oshpark::client
+client.authenticate 'jane@resistor.io', with_password: 'secret'
+```
 
-Then you can can use this object to interact with Oshpark;
+Then you can can use this object to interact with OSH Park;
 
-    file = File.open('my_pcb.zip', 'r')
-    upload = client.create_upload file
-    ...
-    my_projects = client.projects
-    ...
-    project = client.project 'id'
-    client.update_project project["id"], {"name" => "my awesome project"}
-    ...
-    new_order = client.create_order
-    ...
+```ruby
+file = File.open('my_pcb.zip', 'r')
+upload = client.create_upload file
+# ...
+my_projects = client.projects
+# ...
+project = client.project 'id'
+client.update_project project["id"], {"name" => "my awesome project"}
+# ...
+new_order = client.create_order
+# ...
+```
 
-All low level methods will call to Oshpark's servers. Refer to the [source documentation](http://www.rubydoc.info/github/OSHPark/ruby-api-client/master) for more detailed information on each of the available methods.
+All low level methods will call to OSH Park's servers. Refer to the [source documentation](http://www.rubydoc.info/github/OSHPark/ruby-api-client/master) for more detailed information on each of the available methods.
 
 ### High Level API
 
-This is more suited to when you are writing a script or application and you want to use Ruby objects to represent the Oshpark data. It uses the Low Level API underneath but wraps the return data in nice Ruby objects.
+This is more suited to when you are writing a script or application and you want to use Ruby objects to represent the OSH Park data. It uses the Low Level API underneath but wraps the return data in nice Ruby objects.
 
-Again begin by creating an Oshpark::client and authenticating;
+#### Authenticate
 
-    client = Oshpark::client
-    client.authenticate 'jane@resistor.io', {with_password: 'secret'}
+```ruby
+client = Oshpark::client
+client.authenticate 'jane@resistor.io', with_password: 'secret'
+```
 
-    file = File.open('my_pcb.zip', 'r')
-    upload = Oshpark::Upload.create file
-    ...
-    my_projects = Oshpark::Project.all
-    ...
-    project = Oshpark::Project.find 'id'
-    project.name = "my awesome project"
-    project.save!
-    ...
-    new_order = Oshpark::Order.create
-    ...
+or with your API secret if you have one:
 
+```ruby
+client = Oshpark::client
+client.authenticate 'jane@resistor.io', with_api_secret: 'secret'
+```
 
-### Work flow
+##### Creating Your Project
 
-# Authenticate
+Next you need to get your project into OSH Park.  This is done by either
+uploading a file or importing a file from a URL.
 
-    client = Oshpark::client
-    client.authenticate 'jane@resistor.io', {with_password: 'secret'}
+###### Upload
 
+To upload a file directly to the API you create an `Oshpark::Upload` object by
+passing in an `IO` object:
 
-# Creating Your Project
+```ruby
+file   = File.open 'my_pcb.zip'
+upload = Oshpark::Upload.create file
+file.close
+```
 
-Upload
+You now need to wait for processing of the file to complete:
 
-Import
+```ruby
+until upload.finished?
+  sleep 1
+  upload.reload!
+end
+```
 
+Now you can access your project via the upload's `project` method:
 
-# Ordering Your Project
+```ruby
+project = upload.project
+```
 
-Create an Order
-Add your project
-Order Items
-Address
+###### Import
 
-Shipping Rates
+Importing from a remote URL is almost exactly the same as uploading, except
+that you create an instance of the `Oshpark::Import` object, and monitor it
+in much the same was as upload:
 
-Checkout your Order
+```ruby
+import = Oshpark::Upload.create 'https://example.com/my_pcb.zip'
+```
 
+You now need to wait for processing of the file to complete:
+
+```ruby
+until import.finished?
+  sleep 1
+  import.reload!
+end
+```
+
+Now you can access your project via the import's `project` method:
+
+```ruby
+project = import.project
+```
+
+##### Verifying your project
+
+Next you need to verify that your board has been processed as expected.
+Start by verifying that the `top_image` and `bottom_image` match your
+expectations and verify that all the `layers` that you expect are present
+with their image files.
+
+Once you are certain that we have processed your board correctly, then you
+can approve it for ordering:
+
+```ruby
+project.approve!
+```
+
+##### Ordering your project
+
+There are a few steps to go through before you can order your board (or boards)
+via the API:
+
+###### Create a new order
+
+The first step is to create a new, empty order into which you will add your items:
+
+```ruby
+order = Oshpark::Order.create
+```
+
+###### Add your project(s) to your order
+
+Next you need to add your project(s) to your order, specifying their quantity.
+Remember that for prototype services quantities must be in multiples of three.
+
+```ruby
+order.add_item project, 3
+```
+
+###### Create an address
+
+Create an address object with your delivery details:
+
+```ruby
+address = Oshpark::Address.new \
+  name:               'Jane Doe',
+  company_name:       'Resistor Ltd',
+  address_line_1:     'Level One, 83-85 Victoria Road',
+  address_line_2:     'Devonport',
+  city:               'Auckland',
+  zip_or_postal_code: '0624',
+  country:            'nz'
+```
+
+###### Set your order address
+
+Once you have generated your address, you can set it on the order:
+
+```ruby
+order.set_address address
+```
+
+###### Get and set the shipping rates
+
+As our shipping providers generate individual pricing for each destination
+address you need to ask the API to retrieve all the available rates for your
+address.  The available rates will always include the USPS free shipping
+options.
+
+```ruby
+rates = address.available_shipping_rates
+```
+
+Set your order to one of the provided shipping rates:
+
+```ruby
+order.set_shipping_rate rates.first
+```
+
+###### Checkout your order
+
+Next you should be able to checkout your order:
+
+```ruby
+order.checkout
+```
+
+If you are an invoiced customer then your order will immediately be placed in
+the queue ready for panelization, otherwise you will get an email asking for
+payment before the order can continue.  We can't accept credit card payments
+via the API at this time.
+
+If you are not, but would like to be an invoiced customer then contact [OSH Park support](mailto:support@oshpark.com).
 
 ## Contributing
 
