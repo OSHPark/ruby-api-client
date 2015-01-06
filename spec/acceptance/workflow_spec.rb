@@ -64,8 +64,7 @@ describe 'API Workflow' do
     order.set_shipping_rate rates.first
     expect(order.shipping_rate).to be
 
-    # order.checkout
-    # expect(order).to be_processing
-    puts Oshpark.client.checkout_order(order.id).inspect
+    order.checkout
+    expect(order).to be_received
   end
 end

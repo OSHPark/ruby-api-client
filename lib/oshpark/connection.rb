@@ -4,9 +4,11 @@ require 'net/http'
 require 'micro_token'
 
 module Oshpark
-  Unauthorized = Class.new(RuntimeError)
-  NotFound     = Class.new(RuntimeError)
-  ServerError  = Class.new(RuntimeError)
+  HttpError     = Class.new RuntimeError
+  Unauthorized  = Class.new HttpError
+  NotFound      = Class.new HttpError
+  ServerError   = Class.new HttpError
+  Unprocessable = Class.new HttpError
 
   class Connection
     def initialize endpoint_url
@@ -47,11 +49,15 @@ module Oshpark
 
       case response.code.to_i
       when 401
-        raise Unauthorized, json['error']
+        raise Unauthorized,  json['error']
       when 404
-        raise NotFound,     json['error']
+        raise NotFound,      json['error']
+      when 422
+        raise Unprocessable, json['error']
+      when 400...499
+        raise HttpError,     json['error']
       when 500...599
-        raise ServerError,  json['error']
+        raise ServerError,   json['error']
       end
 
       json
