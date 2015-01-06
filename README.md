@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Before you begin you need to have an [Oshpark account](http://oshpark.com/users/sign_up) and then request access to the Oshpark API. Do this by contacting ????
+Before you begin you need to have an [Oshpark account](http://oshpark.com/users/sign_up) and then request access to the Oshpark API. Do this by contacting [Oshpark support](mailto:support@oshpark.com)
 
 This gem provides two interfaces to the OShpark API.
 
@@ -72,6 +72,33 @@ Again begin by creating an Oshpark::client and authenticating;
     ...
     new_order = Oshpark::Order.create
     ...
+
+
+### Work flow
+
+# Authenticate
+
+    client = Oshpark::client
+    client.authenticate 'jane@resistor.io', {with_password: 'secret'}
+
+
+# Creating Your Project
+
+Upload
+
+Import
+
+
+# Ordering Your Project
+
+Create an Order
+Add your project
+Order Items
+Address
+
+Shipping Rates
+
+Checkout your Order
 
 
 ## Contributing
