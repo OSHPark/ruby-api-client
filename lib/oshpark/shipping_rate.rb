@@ -14,5 +14,10 @@ module Oshpark
         from_json shipping_rate_json
       end
     end
+
+    def to_h
+      {carrier_name: carrier_name, service_name: service_name}
+    end
+
   end
 end

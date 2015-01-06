@@ -123,6 +123,7 @@ module Oshpark
     #
     # @param id
     # @param address
+    # An Address object or a Hash with at least the required keys: :name :address_line_1 :address_line_2 :city :country
     def set_order_address id, address
       post_request "orders/#{id}/set_address", {order: {address: address.to_h}}
     end
@@ -134,10 +135,10 @@ module Oshpark
     # Set the delivery address for an Order
     #
     # @param id
-    # @param carrier_name
-    # @param service_name
-    def set_order_shipping_rate id, carrier_name, service_name
-      post_request "orders/#{id}/set_shipping_rate", {order:{shipping_rate:{carrier_name: carrier_name, service_name: service_name}}}
+    # @param shipping_rate
+    # A ShippingRate object or a Hash with the following keys: :carrier_name :service_name
+    def set_order_shipping_rate id, shipping_rate
+      post_request "orders/#{id}/set_shipping_rate", {order:{shipping_rate: shipping_rate.to_h}}
     end
 
     # Checkout a specific order by ID.

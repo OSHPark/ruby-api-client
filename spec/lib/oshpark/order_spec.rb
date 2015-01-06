@@ -66,13 +66,12 @@ describe Oshpark::Order do
   end
 
   describe '#set_shipping_rate' do
-    let(:carrier_name) { 'Bobs Mail'}
-    let(:service_name) { 'Overnight Delivery' }
+    let(:shipping_rate) { Oshpark::ShippingRate.new carrier_name: 'Bobs Mail', service_name: 'Overnight Delivery' }
     it 'sets the shipping rate for an Order' do
       allow(subject).to receive(:id).and_return('abcd1234')
 
-      expect(Oshpark::client).to receive(:set_order_shipping_rate).with("abcd1234", "Bobs Mail", "Overnight Delivery").and_return({'order' => {id: "abcd1234"}})
-      subject.set_shipping_rate carrier_name, service_name
+      expect(Oshpark::client).to receive(:set_order_shipping_rate).with("abcd1234", shipping_rate).and_return({'order' => {id: "abcd1234"}})
+      subject.set_shipping_rate shipping_rate
     end
   end
 

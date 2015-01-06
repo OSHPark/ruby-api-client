@@ -117,10 +117,9 @@ describe Oshpark::Client do
 
   describe '#set_order_shipping_rate' do
     let(:token)            { 'abcd1234' }
-    let(:service_provider) { 'Bobs Mail'}
-    let(:service_name)     { 'Overnight Delivery' }
+    let(:shipping_rate) { {carrier_name: "Bobs Mail", service_name: "Overnight Delivery"} }
     it "sets the shipping rate for an order" do
-      subject.set_order_shipping_rate token, service_provider, service_name
+      subject.set_order_shipping_rate token, shipping_rate
       expect(connection.requests.last).to eq([:post, "orders/#{token}/set_shipping_rate", {order: {shipping_rate: {carrier_name: "Bobs Mail", service_name: "Overnight Delivery"}}}])
     end
   end
