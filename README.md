@@ -147,7 +147,7 @@ Once you are certain that we have processed your board correctly, then you
 can approve it for ordering:
 
 ```ruby
-project.approve!
+project.approve
 ```
 
 ##### Ordering your project

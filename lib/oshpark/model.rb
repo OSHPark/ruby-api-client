@@ -77,6 +77,7 @@ module Oshpark
         end
         @dirty_attributes = []
       end
+      self
     end
 
     def guard_against_invalid_arguments keys

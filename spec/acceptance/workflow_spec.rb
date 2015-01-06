@@ -35,7 +35,7 @@ describe 'API Workflow' do
     expect(project.layers.size).to eq 7
     expect(project.layers.all? { |l| l.class == Oshpark::Layer }).to eq true
 
-    project.approve!
+    project.approve
 
     expect(project).to be_approved
 

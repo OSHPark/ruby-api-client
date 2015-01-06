@@ -45,9 +45,8 @@ module Oshpark
       @height_in_mils || 0
     end
 
-    def approve!
-      json = Oshpark::client.approve_project id
-      reload_with json
+    def approve
+      reload_with Oshpark::client.approve_project id
     end
 
   end

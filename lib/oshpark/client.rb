@@ -59,7 +59,6 @@ module Oshpark
     # Approve a particular project from the current user's collection by ID.
     # We strongly suggest that you allow the user to view the rendered images
     # in Project#top_image, Project#bottom_image and Project#layers[]#image
-    # You should probably call Project#approve! instead.
     #
     # @param id
     def approve_project id
