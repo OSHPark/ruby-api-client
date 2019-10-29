@@ -21,7 +21,7 @@ GEM
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     dotenv (1.0.2)
-    ffi (1.9.3)
+    ffi (1.11.1)
     formatador (0.2.5)
     guard (2.6.1)
       formatador (>= 0.2.4)
